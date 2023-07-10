@@ -20,7 +20,7 @@ services:
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
 
   sql-server:
-    image: 'mcr.microsoft.com/mssql/server:2019-latest'
+    image: 'mcr.microsoft.com/mssql/server:2022-latest'
     restart: on-failure
     ports:
       - '1433:1433'
