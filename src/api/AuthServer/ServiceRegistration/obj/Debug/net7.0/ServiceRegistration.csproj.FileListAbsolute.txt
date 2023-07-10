@@ -1,0 +1,12 @@
+C:\Dev\RiderProjects\Microservices\src\api\AuthServer\ServiceRegistration\bin\Debug\net7.0\ServiceRegistration.deps.json
+C:\Dev\RiderProjects\Microservices\src\api\AuthServer\ServiceRegistration\bin\Debug\net7.0\ServiceRegistration.dll
+C:\Dev\RiderProjects\Microservices\src\api\AuthServer\ServiceRegistration\bin\Debug\net7.0\ServiceRegistration.pdb
+C:\Dev\RiderProjects\Microservices\src\api\AuthServer\ServiceRegistration\obj\Debug\net7.0\ServiceRegistration.csproj.AssemblyReference.cache
+C:\Dev\RiderProjects\Microservices\src\api\AuthServer\ServiceRegistration\obj\Debug\net7.0\ServiceRegistration.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\RiderProjects\Microservices\src\api\AuthServer\ServiceRegistration\obj\Debug\net7.0\ServiceRegistration.AssemblyInfoInputs.cache
+C:\Dev\RiderProjects\Microservices\src\api\AuthServer\ServiceRegistration\obj\Debug\net7.0\ServiceRegistration.AssemblyInfo.cs
+C:\Dev\RiderProjects\Microservices\src\api\AuthServer\ServiceRegistration\obj\Debug\net7.0\ServiceRegistration.csproj.CoreCompileInputs.cache
+C:\Dev\RiderProjects\Microservices\src\api\AuthServer\ServiceRegistration\obj\Debug\net7.0\ServiceRegistration.dll
+C:\Dev\RiderProjects\Microservices\src\api\AuthServer\ServiceRegistration\obj\Debug\net7.0\refint\ServiceRegistration.dll
+C:\Dev\RiderProjects\Microservices\src\api\AuthServer\ServiceRegistration\obj\Debug\net7.0\ServiceRegistration.pdb
+C:\Dev\RiderProjects\Microservices\src\api\AuthServer\ServiceRegistration\obj\Debug\net7.0\ref\ServiceRegistration.dll

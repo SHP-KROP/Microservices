@@ -10,21 +10,8 @@
     <projectFile profileName="https">Discovery/Discovery.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18064fbf-b1e7-444e-a74b-f99350575470" name="Changes" comment="@OA-10: Added consul to docker compose">
-      <change afterPath="$PROJECT_DIR$/Discovery/Options/ConsulOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceRegistration/Abstractions/IConsulRegisterService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceRegistration/Extensions/ServiceCollectionExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceRegistration/Options/ConsulOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ServiceRegistration/Options/DiscoveryOptions.cs" afterDir="false" />
+    <list default="true" id="18064fbf-b1e7-444e-a74b-f99350575470" name="Changes" comment="@OA-10: Added service registration for a test service">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AuthServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AuthServer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthServer/obj/Debug/net6.0/AuthServer.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer/obj/Debug/net6.0/AuthServer.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthServer/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthServer/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthServer/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Discovery/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/Discovery/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Discovery/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OnlineAuction.sln" beforeDir="false" afterPath="$PROJECT_DIR$/OnlineAuction.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +26,7 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/AuctionService/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5b8da17bbdf5f8e4ace29ff2f6458c90ae519cd4d7147a61fabd6568e02f/RuntimeType.ActivatorCache.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/acf1b6abd0c65bfb4dd378fac91ee884d46073faa6295340469651abdca69/PageModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f7283d89a7dc2fbdabfc21aaec3ce9a843729e503558d04806475ba19b8/ServiceCollectionHostedServiceExtensions.cs" root0="SKIP_HIGHLIGHTING" />
@@ -183,7 +171,7 @@
       <option name="presentableId" value="Default" />
       <updated>1688908518129</updated>
       <workItem from="1688908519994" duration="2683000" />
-      <workItem from="1688998255060" duration="3565000" />
+      <workItem from="1688998255060" duration="4496000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1688908841616</created>
@@ -220,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688998835030</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="@OA-10: Added service registration for a test service">
+      <created>1689002168340</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1689002168340</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,6 +230,7 @@
     <MESSAGE value="@OA-10: Renamed the solution to OnlineAuction" />
     <MESSAGE value="@OA-10: Added discovery assembly" />
     <MESSAGE value="@OA-10: Added consul to docker compose" />
-    <option name="LAST_COMMIT_MESSAGE" value="@OA-10: Added consul to docker compose" />
+    <MESSAGE value="@OA-10: Added service registration for a test service" />
+    <option name="LAST_COMMIT_MESSAGE" value="@OA-10: Added service registration for a test service" />
   </component>
 </project>
