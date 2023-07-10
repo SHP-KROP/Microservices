@@ -7,4 +7,9 @@
         <RootNamespace>Discovery</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Ocelot" Version="19.0.2" />
+      <PackageReference Include="Ocelot.Provider.Consul" Version="19.0.2" />
+    </ItemGroup>
+
 </Project>

@@ -10,27 +10,33 @@
     <projectFile profileName="https">Discovery/Discovery.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18064fbf-b1e7-444e-a74b-f99350575470" name="Changes" comment="@OA-10: Added technical files">
-      <change beforePath="$PROJECT_DIR$/Discovery/Discovery.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/Options/ConsulOptions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/Properties/launchSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/appsettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/Discovery.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/Discovery.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/Discovery.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/Discovery.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/Discovery.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/Discovery.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/Discovery.csproj.nuget.dgspec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/Discovery.csproj.nuget.g.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/Discovery.csproj.nuget.g.targets" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/project.assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/project.nuget.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/project.packagespec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Discovery/obj/rider.project.restore.info" beforeDir="false" />
+    <list default="true" id="18064fbf-b1e7-444e-a74b-f99350575470" name="Changes" comment="@OA-10: Added gateway project">
+      <change afterPath="$PROJECT_DIR$/Gateway/ocelot.Development.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gateway/ocelot.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AuthServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AuthServer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuctionService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AuctionService/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuctionService/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/AuctionService/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuctionService/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/AuctionService/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuctionService/bin/Debug/net7.0/AuctionService.dll" beforeDir="false" afterPath="$PROJECT_DIR$/AuctionService/bin/Debug/net7.0/AuctionService.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuctionService/bin/Debug/net7.0/AuctionService.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/AuctionService/bin/Debug/net7.0/AuctionService.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuctionService/bin/Debug/net7.0/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/AuctionService/bin/Debug/net7.0/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuctionService/obj/Debug/net7.0/AuctionService.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AuctionService/obj/Debug/net7.0/AuctionService.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuctionService/obj/Debug/net7.0/AuctionService.dll" beforeDir="false" afterPath="$PROJECT_DIR$/AuctionService/obj/Debug/net7.0/AuctionService.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuctionService/obj/Debug/net7.0/AuctionService.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/AuctionService/obj/Debug/net7.0/AuctionService.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuctionService/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/AuctionService/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthServer/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/AuthServer/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/Gateway.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/Gateway.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/Options/ConsulOptions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/obj/Debug/net7.0/Gateway.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/obj/Debug/net7.0/Gateway.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/obj/Debug/net7.0/Gateway.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/obj/Debug/net7.0/Gateway.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/obj/Gateway.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/obj/Gateway.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServiceRegistration/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/ServiceRegistration/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +52,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/AuctionService/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Gateway/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5b8da17bbdf5f8e4ace29ff2f6458c90ae519cd4d7147a61fabd6568e02f/RuntimeType.ActivatorCache.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/acf1b6abd0c65bfb4dd378fac91ee884d46073faa6295340469651abdca69/PageModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f7283d89a7dc2fbdabfc21aaec3ce9a843729e503558d04806475ba19b8/ServiceCollectionHostedServiceExtensions.cs" root0="SKIP_HIGHLIGHTING" />
@@ -74,7 +81,12 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.AuctionService: http">
+  <component name="RunManager" selected="Compound.Gateway and services">
+    <configuration name="Gateway and services" type="CompoundRunConfigurationType">
+      <toRun name="AuctionService: http" type="LaunchSettings" />
+      <toRun name="Discovery: http" type="LaunchSettings" />
+      <method v="2" />
+    </configuration>
     <configuration name="AuctionService: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/AuctionService/AuctionService.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
@@ -136,7 +148,7 @@
       </method>
     </configuration>
     <configuration name="Discovery: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Discovery/Discovery.csproj" />
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Gateway/Gateway.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
       <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
@@ -151,7 +163,7 @@
       </method>
     </configuration>
     <configuration name="Discovery: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Discovery/Discovery.csproj" />
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Gateway/Gateway.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
       <option name="LAUNCH_PROFILE_NAME" value="http" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
@@ -166,7 +178,7 @@
       </method>
     </configuration>
     <configuration name="Discovery: https" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Discovery/Discovery.csproj" />
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Gateway/Gateway.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
       <option name="LAUNCH_PROFILE_NAME" value="https" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
@@ -180,6 +192,16 @@
         <option name="Build" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.AuctionService: http" />
+      <item itemvalue=".NET Launch Settings Profile.AuctionService: https" />
+      <item itemvalue=".NET Launch Settings Profile.AuctionService: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.AuthServer: SelfHost" />
+      <item itemvalue=".NET Launch Settings Profile.Discovery: http" />
+      <item itemvalue=".NET Launch Settings Profile.Discovery: https" />
+      <item itemvalue=".NET Launch Settings Profile.Discovery: IIS Express" />
+      <item itemvalue="Compound.Gateway and services" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -190,7 +212,7 @@
       <option name="presentableId" value="Default" />
       <updated>1688908518129</updated>
       <workItem from="1688908519994" duration="2683000" />
-      <workItem from="1688998255060" duration="4940000" />
+      <workItem from="1688998255060" duration="9831000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1688908841616</created>
@@ -241,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689003487955</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="@OA-10: Added gateway project">
+      <created>1689003637206</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1689003637206</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,6 +287,7 @@
     <MESSAGE value="@OA-10: Added consul to docker compose" />
     <MESSAGE value="@OA-10: Added service registration for a test service" />
     <MESSAGE value="@OA-10: Added technical files" />
-    <option name="LAST_COMMIT_MESSAGE" value="@OA-10: Added technical files" />
+    <MESSAGE value="@OA-10: Added gateway project" />
+    <option name="LAST_COMMIT_MESSAGE" value="@OA-10: Added gateway project" />
   </component>
 </project>

@@ -6,6 +6,6 @@ var services = builder.Services;
 services.AddDiscovery(builder.Configuration);
 
 var app = builder.Build();
-app.MapGet("/auction", () => "Auction");
+app.MapGet("/api/auction", () => "Auction");
 
 app.Run();
