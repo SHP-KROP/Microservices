@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\RiderProjects\\Microservices\\src\\api\\AuthServer\\Discovery\\Discovery.csproj",
-      "projectName": "Discovery",
-      "projectPath": "C:\\Dev\\RiderProjects\\Microservices\\src\\api\\AuthServer\\Discovery\\Discovery.csproj",
+      "projectUniqueName": "C:\\Dev\\RiderProjects\\Microservices\\src\\api\\AuthServer\\Gateway\\Gateway.csproj",
+      "projectName": "Gateway",
+      "projectPath": "C:\\Dev\\RiderProjects\\Microservices\\src\\api\\AuthServer\\Gateway\\Gateway.csproj",
       "packagesPath": "C:\\Users\\Oleksandr Bondarenko\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\RiderProjects\\Microservices\\src\\api\\AuthServer\\Discovery\\obj\\",
+      "outputPath": "C:\\Dev\\RiderProjects\\Microservices\\src\\api\\AuthServer\\Gateway\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

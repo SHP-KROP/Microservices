@@ -10,8 +10,27 @@
     <projectFile profileName="https">Discovery/Discovery.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18064fbf-b1e7-444e-a74b-f99350575470" name="Changes" comment="@OA-10: Added service registration for a test service">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AuthServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AuthServer/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="18064fbf-b1e7-444e-a74b-f99350575470" name="Changes" comment="@OA-10: Added technical files">
+      <change beforePath="$PROJECT_DIR$/Discovery/Discovery.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/Options/ConsulOptions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/Program.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/Properties/launchSettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/Discovery.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/Discovery.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/Discovery.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/Discovery.GlobalUsings.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/Discovery.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/Debug/net7.0/Discovery.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/Discovery.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/Discovery.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/Discovery.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/project.packagespec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discovery/obj/rider.project.restore.info" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +190,7 @@
       <option name="presentableId" value="Default" />
       <updated>1688908518129</updated>
       <workItem from="1688908519994" duration="2683000" />
-      <workItem from="1688998255060" duration="4496000" />
+      <workItem from="1688998255060" duration="4940000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1688908841616</created>
@@ -215,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689002168340</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="@OA-10: Added technical files">
+      <created>1689003487954</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1689003487955</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +257,7 @@
     <MESSAGE value="@OA-10: Added discovery assembly" />
     <MESSAGE value="@OA-10: Added consul to docker compose" />
     <MESSAGE value="@OA-10: Added service registration for a test service" />
-    <option name="LAST_COMMIT_MESSAGE" value="@OA-10: Added service registration for a test service" />
+    <MESSAGE value="@OA-10: Added technical files" />
+    <option name="LAST_COMMIT_MESSAGE" value="@OA-10: Added technical files" />
   </component>
 </project>
