@@ -1,11 +1,25 @@
+using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using ServiceRegistration.Extensions;
+using ILogger = Serilog.ILogger;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
 services.AddDiscovery(builder.Configuration);
 
+builder.Host.UseSerilog((context, configuration) 
+    => configuration.ReadFrom.Configuration(context.Configuration));
+
 var app = builder.Build();
-app.MapGet("/api/auction", () => "Auction");
+
+app.UseSerilogRequestLogging();
+
+app.MapGet("/api/auction", ([FromServices] ILogger logger) =>
+{
+    logger.Information("ASDF!!!!");
+
+    return new ObjectResult("AUCTION!!!");
+});
 
 app.Run();
