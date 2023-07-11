@@ -3,12 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Welcome() {
   return (
-    <div className="h-screen w-full bg-welcome bg-no-repeat bg-cover bg-center">
-      <div className="greetings flex justify-center items-end h-20">
-        <h1 className="text-white text-center text-3xl not-italic font-semibold font-poppins">
-          We&apos;re glad to see you here!
-        </h1>
-      </div>
+    <div className="h-screen w-full bg-welcome bg-no-repeat bg-cover bg-center flex flex-col justify-center">
       <div className="welcome relative flex flex-col justify-center items-center h-5/6">
         <div className="title mb-14">
           <p className="text-white text-center text-5xl not-italic font-extrabold uppercase underline-offset-2 underline">
@@ -20,10 +15,10 @@ export default function Welcome() {
             Welcome to the world of online <br /> auctions!
           </p>
         </div>
-        <div className="register-link">
+        <div className="register-link z-[1]">
           <Link
-            to="/ajksdjkas"
-            className="uppercase border p-5 h-10 w-64 bg-white text-black flex items-center justify-center rounded-full"
+            to="/home"
+            className="uppercase border p-5 h-10 w-96 bg-white text-black flex items-center justify-center rounded-full font-bold animate-bounce"
           >
             Register now
           </Link>

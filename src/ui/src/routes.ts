@@ -4,14 +4,14 @@ import Welcome from './pages/Welcome/Welcome';
 
 const routes: IRoute[] = [
   {
-    key: 'home-route',
+    key: 'home',
     title: 'Home',
     path: '/home',
     enabled: true,
     component: Home,
   },
   {
-    key: 'welcome-route',
+    key: 'welcome',
     title: 'Welcome',
     path: '/',
     enabled: true,
