@@ -1,7 +1,5 @@
-import Home from './pages/Home/Home';
+import RoutesMap from './components/RoutesMap';
 
-export function App() {
-  return <Home />;
+export default function App() {
+  return <RoutesMap />;
 }
-
-export default App;
