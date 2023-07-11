@@ -6,18 +6,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Duende.IdentityServer.EntityFramework" Version="6.2.0"/>
+        <PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="6.2.0" />
+        <PackageReference Include="Duende.IdentityServer.EntityFramework" Version="6.2.0" />
 
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.0"/>
-        <PackageReference Include="Serilog.AspNetCore" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.0" />
 
-        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
+
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="6.0.0" />
+
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="wwwroot\"/>
+        <Folder Include="Migrations\" />
+        <Folder Include="wwwroot\" />
     </ItemGroup>
 
 </Project>

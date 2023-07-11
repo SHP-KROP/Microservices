@@ -6,6 +6,9 @@ using AuthServer.Pages.Admin.IdentityScopes;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Microsoft.EntityFrameworkCore.Migrations.Internal;
+using Microsoft.AspNetCore.Identity;
+using AuthServer.Database;
 
 namespace AuthServer;
 
@@ -13,11 +16,24 @@ internal static class HostingExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
+        var configuration = builder.Configuration;
+
+        var connectionString = configuration.GetConnectionString("YehorConnection");
+
+        var migrationAssembly = typeof(Config).Assembly.GetName().Name;
+        
         builder.Services.AddRazorPages();
 
-        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        {
+            options.UseSqlServer(connectionString, sqlOptions => sqlOptions.MigrationsAssembly(migrationAssembly));
+        });
 
-        var isBuilder = builder.Services
+        builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+
+        //var isBuilder = 
+        builder.Services
             .AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
@@ -28,13 +44,12 @@ internal static class HostingExtensions
                 // see https://docs.duendesoftware.com/identityserver/v5/fundamentals/resources/
                 options.EmitStaticAudienceClaim = true;
             })
-            .AddTestUsers(TestUsers.Users)
             // this adds the config data from DB (clients, resources, CORS)
             .AddConfigurationStore(options =>
             {
                 options.ConfigureDbContext = b =>
-                    b.UseSqlite(connectionString,
-                        dbOpts => dbOpts.MigrationsAssembly(typeof(Program).Assembly.FullName));
+                    b.UseSqlServer(connectionString,
+                        dbOpts => dbOpts.MigrationsAssembly(migrationAssembly));
             })
             // this is something you will want in production to reduce load on and requests to the DB
             //.AddConfigurationStoreCache()
@@ -43,13 +58,13 @@ internal static class HostingExtensions
             .AddOperationalStore(options =>
             {
                 options.ConfigureDbContext = b =>
-                    b.UseSqlite(connectionString,
-                        dbOpts => dbOpts.MigrationsAssembly(typeof(Program).Assembly.FullName));
-
+                    b.UseSqlServer(connectionString,
+                        dbOpts => dbOpts.MigrationsAssembly(migrationAssembly));
                 // this enables automatic token cleanup. this is optional.
                 options.EnableTokenCleanup = true;
                 options.RemoveConsumedTokens = true;
-            });
+            })
+            .AddAspNetIdentity<IdentityUser>();
 
         builder.Services.AddAuthentication()
             .AddGoogle(options =>
@@ -64,28 +79,28 @@ internal static class HostingExtensions
             });
 
 
-        // this adds the necessary config for the simple admin/config pages
-        {
-            builder.Services.AddAuthorization(options =>
-                options.AddPolicy("admin",
-                    policy => policy.RequireClaim("sub", "1"))
-            );
+        //// this adds the necessary config for the simple admin/config pages
+        //{
+        //    builder.Services.AddAuthorization(options =>
+        //        options.AddPolicy("admin",
+        //            policy => policy.RequireClaim("sub", "1"))
+        //    );
 
-            builder.Services.Configure<RazorPagesOptions>(options =>
-                options.Conventions.AuthorizeFolder("/Admin", "admin"));
+        //    builder.Services.Configure<RazorPagesOptions>(options =>
+        //        options.Conventions.AuthorizeFolder("/Admin", "admin"));
 
-            builder.Services.AddTransient<ClientRepository>();
-            builder.Services.AddTransient<IdentityScopeRepository>();
-            builder.Services.AddTransient<ApiScopeRepository>();
-        }
+        //    builder.Services.AddTransient<ClientRepository>();
+        //    builder.Services.AddTransient<IdentityScopeRepository>();
+        //    builder.Services.AddTransient<ApiScopeRepository>();
+        //}
 
-        // if you want to use server-side sessions: https://blog.duendesoftware.com/posts/20220406_session_management/
-        // then enable it
-        //isBuilder.AddServerSideSessions();
-        //
-        // and put some authorization on the admin/management pages using the same policy created above
-        //builder.Services.Configure<RazorPagesOptions>(options =>
-        //    options.Conventions.AuthorizeFolder("/ServerSideSessions", "admin"));
+        //// if you want to use server-side sessions: https://blog.duendesoftware.com/posts/20220406_session_management/
+        //// then enable it
+        ////isBuilder.AddServerSideSessions();
+        ////
+        //// and put some authorization on the admin/management pages using the same policy created above
+        ////builder.Services.Configure<RazorPagesOptions>(options =>
+        ////    options.Conventions.AuthorizeFolder("/ServerSideSessions", "admin"));
 
         return builder.Build();
     }
@@ -98,6 +113,8 @@ internal static class HostingExtensions
         {
             app.UseDeveloperExceptionPage();
         }
+
+        app.UseIdentityServer();
 
         app.UseStaticFiles();
         app.UseRouting();
