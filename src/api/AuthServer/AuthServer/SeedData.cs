@@ -15,10 +15,7 @@ public class SeedData
     {
         using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
         {
-            scope.ServiceProvider.GetService<PersistedGrantDbContext>().Database.Migrate();
-
             var context = scope.ServiceProvider.GetService<ConfigurationDbContext>();
-            context.Database.Migrate();
             EnsureSeedData(context);
             EnsureUsers(scope);
         }

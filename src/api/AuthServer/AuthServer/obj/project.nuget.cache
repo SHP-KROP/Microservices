@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0/FQAGj/twnEgff7cVnjofXLmfagDfww0KYV5YREo8bPMiMWFeI5Ui1Qst/+0rhueoTpfrlpj7oER5J6EPUL9Q==",
+  "dgSpecHash": "+iWFKd7AH52VPPUUwp6eXneCmv4Tn4INCbxqAI4UKRakLteIAWTmLXkguyAkIV39XjFdAeVTB0VmVigwLMSGWg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\OnlineAuction\\src\\api\\AuthServer\\AuthServer\\AuthServer.csproj",
   "expectedPackageFiles": [

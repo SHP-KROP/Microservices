@@ -112,14 +112,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlhZ25vc3RpY3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/OnlineAuction/src/api/AuthServer/AuthServer/Pages/ExternalLogin/Callback.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXh0ZXJuYWxMb2dpblxDYWxsYmFjay5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Projects/OnlineAuction/src/api/AuthServer/AuthServer/Pages/ExternalLogin/Challenge.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXh0ZXJuYWxMb2dpblxDaGFsbGVuZ2UuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Projects/OnlineAuction/src/api/AuthServer/AuthServer/Pages/Grants/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JhbnRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
