@@ -1,0 +1,47 @@
+version: '3'
+services:
+  zookeeper:
+    image: 'confluentinc/cp-zookeeper:6.2.0'
+    ports:
+      - '2181:2181'
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+
+  kafka:
+    image: 'confluentinc/cp-kafka:6.2.0'
+    restart: on-failure
+    ports:
+      - '9092:9092'
+    depends_on:
+      - zookeeper
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+
+  sql-server:
+    image: 'mcr.microsoft.com/mssql/server:2022-latest'
+    restart: on-failure
+    ports:
+      - '1433:1433'
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Pass1234Qq
+      - MSSQL_PID=Express
+
+  kowl:
+    image: quay.io/cloudhut/kowl:v1.4.0
+    restart: on-failure
+    volumes:
+    - ./kowl_config:/etc/kowl/
+    ports:
+    - "8080:8080"
+    entrypoint: ./kowl --config.filepath=/etc/kowl/config.yaml
+    depends_on:
+      - kafka
+  
+  consul:
+    image: hashicorp/consul:latest
+    ports:
+      - '8500:8500'
+      - '8600:8600/udp'
