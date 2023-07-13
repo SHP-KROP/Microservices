@@ -1,4 +1,5 @@
-import { IRoute } from './interfaces/IRoute';
+import { IRoute } from './interfaces/Routes/IRoute';
+import AuthPage from './pages/AuthPage/AuthPage';
 import Home from './pages/Home/Home';
 import Welcome from './pages/Welcome/Welcome';
 
@@ -16,6 +17,13 @@ const routes: IRoute[] = [
     path: '/',
     enabled: true,
     component: Welcome,
+  },
+  {
+    key: 'auth',
+    title: 'AuthPage',
+    path: '/auth',
+    enabled: true,
+    component: AuthPage,
   },
 ];
 
