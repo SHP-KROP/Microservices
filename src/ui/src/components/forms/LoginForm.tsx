@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import { TextField } from '@material-ui/core';
 import { ILoginFormProps } from '../../interfaces/Forms/ILoginFormProps';
 import { ILoginFormValues } from '../../interfaces/Forms/ILoginFormValues';
-import validateLoginForm from '../../Validation/validateAuthForms/validationLoginForm';
 import GoogleIcon from '../../images/Google.svg';
+import validateLoginForm from '../../Validation/validateAuthForms/validationLoginForm';
+import CustomTextField from './CustomTextField';
+import fieldLoginConfig from './fieldLoginConfig';
 
 function LoginForm({
   onSubmit,
@@ -18,6 +19,7 @@ function LoginForm({
       setIsClicked(false);
     }, 200);
   };
+
   const formik = useFormik<ILoginFormValues>({
     initialValues: {
       email: '',
@@ -28,8 +30,7 @@ function LoginForm({
       onSubmit(values);
     },
   });
-  const emailError = formik.touched.email && formik.errors.email;
-  const passwordError = formik.touched.password && formik.errors.password;
+
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -38,37 +39,10 @@ function LoginForm({
       <h1 className="text-black text-center text-lg not-italic font-semibold uppercase">
         Login
       </h1>
-      <div className="w-9/12">
-        <TextField
-          id="email"
-          name="email"
-          label="Email"
-          type="email"
-          variant="outlined"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.email}
-          error={!!emailError}
-          helperText={emailError}
-          className="w-full"
-        />
-      </div>
+      {fieldLoginConfig.map((field) => (
+        <CustomTextField field={field} formik={formik} key={field.id} />
+      ))}
 
-      <div className="w-9/12">
-        <TextField
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
-          variant="outlined"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.password}
-          error={!!passwordError}
-          helperText={passwordError}
-          className="w-full"
-        />
-      </div>
       <button
         type="submit"
         className={`w-9/12 h-10 rounded text-white uppercase transition-transform ${

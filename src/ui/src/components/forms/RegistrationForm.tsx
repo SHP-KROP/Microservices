@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import { TextField } from '@material-ui/core';
 import GoogleIcon from '../../images/Google.svg';
-import fieldConfigs from './fieldConfig';
+import fieldRegistrationConfig from './fieldRegistrationConfig';
 import { IRegisterFormValues } from '../../interfaces/Forms/IRegisterFormValues';
 import { IRegisterFormProps } from '../../interfaces/Forms/IRegisterFormProps';
 import validateRegisterForm from '../../Validation/validateAuthForms/validationRegisterForm';
+import CustomTextField from './CustomTextField';
 
 function RegistrationForm({
   onSubmit,
@@ -41,22 +41,8 @@ function RegistrationForm({
       <h1 className="text-black text-center text-lg not-italic font-semibold uppercase">
         Register
       </h1>
-      {fieldConfigs.map((field) => (
-        <div className="w-9/12" key={field.id}>
-          <TextField
-            id={field.id}
-            name={field.name}
-            label={field.label}
-            variant="outlined"
-            type={field.type}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values[field.name]}
-            error={!!formik.errors[field.name] && formik.touched[field.name]}
-            helperText={formik.touched[field.name] && formik.errors[field.name]}
-            className="w-full"
-          />
-        </div>
+      {fieldRegistrationConfig.map((field) => (
+        <CustomTextField field={field} formik={formik} key={field.id} />
       ))}
 
       <button

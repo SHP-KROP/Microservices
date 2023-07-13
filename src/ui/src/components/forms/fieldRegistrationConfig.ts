@@ -1,4 +1,4 @@
-const fieldConfigs = [
+const fieldRegistrationConfig = [
   {
     id: 'name',
     name: 'name',
@@ -30,4 +30,4 @@ const fieldConfigs = [
     type: 'password',
   },
 ];
-export default fieldConfigs;
+export default fieldRegistrationConfig;
