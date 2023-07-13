@@ -17,7 +17,7 @@ export default function Welcome() {
         </div>
         <div className="register-link z-[1]">
           <Link
-            to="/home"
+            to="/auth"
             className="uppercase border p-5 h-10 w-96 bg-white text-black flex items-center justify-center rounded-full font-bold"
           >
             Register now

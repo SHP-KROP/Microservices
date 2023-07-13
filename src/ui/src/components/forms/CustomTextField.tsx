@@ -1,15 +1,9 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
 import { FormikProps } from 'formik';
+import { IFieldConfig } from '../../interfaces/Forms/IFieldConfig';
 
-export interface IFieldConfig<T> {
-  id: string;
-  name: keyof T | string;
-  label: string;
-  type: string;
-}
-
-interface ICustomTextFieldProps<T> {
+export interface ICustomTextFieldProps<T> {
   field: IFieldConfig<T>;
   formik: FormikProps<T>;
 }

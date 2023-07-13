@@ -1,12 +1,7 @@
 import { FormikProps } from 'formik';
-import { IRegisterFormValues } from './IRegisterFormValues';
+import { IFieldConfig } from './IFieldConfig';
 
-export interface ICustomTextFieldProps {
-  field: {
-    id: string;
-    name: string;
-    label: string;
-    type: string;
-  };
-  formik: FormikProps<IRegisterFormValues>;
+export interface ICustomTextFieldProps<T> {
+  field: IFieldConfig<T>;
+  formik: FormikProps<T>;
 }
