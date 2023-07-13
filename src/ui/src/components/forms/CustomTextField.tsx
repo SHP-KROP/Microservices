@@ -19,7 +19,7 @@ function CustomTextField<T>({ field, formik }: ICustomTextFieldProps<T>) {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values[name as keyof T]}
-        error={!!error}
+        error={Boolean(error)}
         helperText={helperText}
         className="w-full"
       />
