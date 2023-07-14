@@ -27,6 +27,7 @@ builder.Host.UseSerilog((context, configuration) =>
 var app = builder.Build();
 
 app.UseRouting();
+app.UseWebSockets();
 await app.UseOcelot();
 app.UseSerilogRequestLogging();
 
