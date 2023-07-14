@@ -36,42 +36,43 @@ function RegistrationForm({
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="border rounded-lg flex flex-col items-center justify-center bg-white h-4/5 w-2/4 gap-2 max-w-xl"
+      className="border rounded-lg bg-white h-90vh w-2/4  max-w-xl"
     >
-      <h1 className="text-black text-center text-lg not-italic font-semibold uppercase">
-        Register
-      </h1>
-      {fieldRegistrationConfig.map((field) => (
-        <CustomTextField field={field} formik={formik} key={field.id} />
-      ))}
-
-      <button
-        type="submit"
-        className={`w-9/12 h-10 rounded text-white uppercase transition-transform ${
-          isClicked ? 'transform scale-105' : ''
-        }`}
-        style={{ background: 'rgba(5, 81, 81, 0.80)' }}
-        onClick={handleButtonClick}
-      >
-        Sign up
-      </button>
-      <p className="text-blue-500">
+      <div className="flex flex-col justify-center items-center gap-2 p-8">
+        <h1 className="text-black text-center text-lg not-italic font-semibold uppercase">
+          Register
+        </h1>
+        {fieldRegistrationConfig.map((field) => (
+          <CustomTextField field={field} formik={formik} key={field.id} />
+        ))}
+        <button
+          type="submit"
+          className={`w-9/12 h-10 rounded text-white uppercase transition-transform ${
+            isClicked ? 'transform scale-105' : ''
+          }`}
+          style={{ background: 'rgba(5, 81, 81, 0.80)' }}
+          onClick={handleButtonClick}
+        >
+          Sign up
+        </button>
+        <p className="text-blue-500">
+          <button
+            type="button"
+            className="link-button underline"
+            onClick={toggleForm}
+          >
+            Already have an account? Login
+          </button>
+        </p>
         <button
           type="button"
-          className="link-button underline"
-          onClick={toggleForm}
+          onClick={handleGoogleSignIn}
+          className="border border-emerald-600 rounded text-black text-center text-xs not-italic font-normal capitalize w-8/12 h-10 flex items-center justify-center gap-1"
         >
-          Already have an account? Login
+          <img src={GoogleIcon} alt="Google Icon" className="w-6" />
+          Continue with Google
         </button>
-      </p>
-      <button
-        type="button"
-        onClick={handleGoogleSignIn}
-        className="border border-emerald-600 rounded text-black text-center text-xs not-italic font-normal capitalize w-8/12 h-10 flex items-center justify-center gap-1"
-      >
-        <img src={GoogleIcon} alt="Google Icon" className="w-6" />
-        Continue with Google
-      </button>
+      </div>
     </form>
   );
 }
