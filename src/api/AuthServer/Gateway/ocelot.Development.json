@@ -13,6 +13,13 @@
       "DownstreamScheme": "wss",
       "UpstreamPathTemplate": "/messaging-auction",
       "UpstreamHttpMethod": []
+    },
+    {
+      "ServiceName": "AuctionService",
+      "DownstreamPathTemplate": "/messaging-auction/{path}",
+      "DownstreamScheme": "wss",
+      "UpstreamPathTemplate": "/messaging-auction/{path}",
+      "UpstreamHttpMethod": []
     }
   ],
   "GlobalConfiguration": {

@@ -18,6 +18,16 @@ builder.Configuration.AddEnvironmentVariables();
 
 var services = builder.Services;
 
+services.AddCors(x =>
+{
+    x.AddPolicy("DefaultPolicy",
+        options => options
+            .SetIsOriginAllowed(_ => true)
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+});
+
 services.AddOcelot(builder.Configuration)
     .AddConsul();
 
@@ -25,6 +35,8 @@ builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
 
 var app = builder.Build();
+
+app.UseCors("DefaultPolicy");
 
 app.UseRouting();
 app.UseWebSockets();
