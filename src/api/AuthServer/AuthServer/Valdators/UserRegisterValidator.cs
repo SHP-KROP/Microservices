@@ -1,5 +1,4 @@
 ﻿using AuthServer.DTO;
-using Duende.IdentityServer.Extensions;
 using FluentValidation;
 
 namespace AuthServer.Valdators
@@ -8,9 +7,6 @@ namespace AuthServer.Valdators
     {
         public UserRegisterValidator()
         {
-            RuleFor(user => user.UserName)
-                .NotEmpty().WithMessage("Username is required.");
-
             RuleFor(user => user.Name)
                 .NotEmpty().WithMessage("Name is required.");
 

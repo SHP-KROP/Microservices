@@ -6,6 +6,9 @@ using Serilog;
 using AutoMapper;
 using AuthServer.Mapping;
 using AuthServer.Services;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using AuthServer.Common;
 
 namespace AuthServer;
 
@@ -78,6 +81,9 @@ internal static class HostingExtensions
         builder.Services.AddControllers();
 
         builder.Services.AddScoped<AuthService>();
+
+        builder.Services.AddFluentValidation();
+        builder.Services.AddValidatorsFromAssemblyContaining<IAssemblyMarker>();
 
         return builder.Build();
     }

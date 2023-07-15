@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using AuthServer.DTO;
 
 public class PasswordValidator : AbstractValidator<string>
 {

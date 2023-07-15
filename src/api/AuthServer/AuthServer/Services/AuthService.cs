@@ -1,5 +1,4 @@
 ﻿using AuthServer.DTO;
-using AuthServer.Valdators;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 
@@ -20,24 +19,15 @@ namespace AuthServer.Services
 
         public async Task<UserDTO> Register(UserRegisterDTO userRegisterDTO)
         {
-            if (userRegisterDTO.UserName == null)
-            {
-                userRegisterDTO.UserName = Guid.NewGuid().ToString();
-            }
-
             var existingUser = await _userManager.FindByEmailAsync(userRegisterDTO.Email);
             if (existingUser != null)
             {
                 throw new InvalidOperationException("User with this email already exists");
             }
 
-            var validator = new UserRegisterValidator();
-            var validationResult = await validator.ValidateAsync(userRegisterDTO);
-
-            if (!validationResult.IsValid)
+            if (userRegisterDTO.UserName == null)
             {
-                var errors = validationResult.Errors.Select(error => error.ErrorMessage);
-                throw new InvalidOperationException(string.Join(" ", errors));
+                userRegisterDTO.UserName = Guid.NewGuid().ToString();
             }
 
             var user = _mapper.Map<ApplicationUser>(userRegisterDTO);
@@ -54,15 +44,6 @@ namespace AuthServer.Services
 
         public async Task<string> Login(UserLoginDTO userLoginDTO)
         {
-            var validator = new UserLoginValidator();
-            var validationResult = await validator.ValidateAsync(userLoginDTO);
-
-            if (!validationResult.IsValid)
-            {
-                var errors = validationResult.Errors.Select(error => error.ErrorMessage);
-                throw new InvalidOperationException(string.Join(" ", errors));
-            }
-
             var user = await _userManager.FindByEmailAsync(userLoginDTO.Email);
 
             if (user == null)
