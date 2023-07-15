@@ -25,3 +25,4 @@ dist-ssr
 
 # Ignored files
 package-lock.json
+.env

@@ -1,3 +1,4 @@
+import AuctionMessaging from './api/ws/auctionClient';
 import { IRoute } from './interfaces/Routes/IRoute';
 import AuthPage from './pages/AuthPage/AuthPage';
 import Home from './pages/Home/Home';
@@ -24,6 +25,13 @@ const routes: IRoute[] = [
     path: '/auth',
     enabled: true,
     component: AuthPage,
+  },
+  {
+    key: 'auction-messaging',
+    title: 'AuctionMessaging',
+    path: '/auction-messaging',
+    enabled: true,
+    component: AuctionMessaging,
   },
 ];
 

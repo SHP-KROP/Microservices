@@ -3,8 +3,22 @@
     {
       "ServiceName": "AuctionService",
       "DownstreamPathTemplate": "/api/auction",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "UpstreamPathTemplate": "/auction",
+      "UpstreamHttpMethod": []
+    },
+    {
+      "ServiceName": "AuctionService",
+      "DownstreamPathTemplate": "/messaging-auction",
+      "DownstreamScheme": "wss",
+      "UpstreamPathTemplate": "/messaging-auction",
+      "UpstreamHttpMethod": []
+    },
+    {
+      "ServiceName": "AuctionService",
+      "DownstreamPathTemplate": "/messaging-auction/{path}",
+      "DownstreamScheme": "wss",
+      "UpstreamPathTemplate": "/messaging-auction/{path}",
       "UpstreamHttpMethod": []
     }
   ],
