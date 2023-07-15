@@ -7,6 +7,9 @@ export default {
         welcome:
           "linear-gradient(0deg, rgba(5, 81, 81, 0.80) 0%, rgba(5, 81, 81, 0.80) 100%), url('./src/images/bg-welcome.jpeg')",
       },
+      backgroundColor: {
+        home: 'rgba(5, 81, 81, 0.80)',
+      },
     },
     fontFamily: {
       poppins: ['Poppins'],

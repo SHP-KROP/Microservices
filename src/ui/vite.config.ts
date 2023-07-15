@@ -4,6 +4,7 @@
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import WindiCSS from 'vite-plugin-windicss';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,7 +12,7 @@ export default defineConfig({
   optimizeDeps: {
     esbuildOptions: { target: 'es2022', supported: { bigint: true } },
   },
-  plugins: [react()],
+  plugins: [react(), WindiCSS()],
   test: {
     globals: true,
     environment: 'jsdom',

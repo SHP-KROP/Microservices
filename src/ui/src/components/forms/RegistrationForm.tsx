@@ -36,7 +36,7 @@ function RegistrationForm({
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="border rounded-lg bg-white h-90vh w-2/4  max-w-xl"
+      className="border rounded-lg bg-white h-90vh w-2/4 max-w-xl"
     >
       <div className="flex flex-col justify-center items-center gap-2 p-8">
         <h1 className="text-black text-center text-lg not-italic font-semibold uppercase">
