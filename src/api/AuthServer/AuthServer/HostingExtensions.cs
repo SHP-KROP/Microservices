@@ -1,14 +1,11 @@
+using AuthServer.Database;
 using Duende.IdentityServer;
-using AuthServer;
-using AuthServer.Pages.Admin.ApiScopes;
-using AuthServer.Pages.Admin.Clients;
-using AuthServer.Pages.Admin.IdentityScopes;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using Microsoft.EntityFrameworkCore.Migrations.Internal;
-using Microsoft.AspNetCore.Identity;
-using AuthServer.Database;
+using AutoMapper;
+using AuthServer.Mapping;
+using AuthServer.Services;
 
 namespace AuthServer;
 
@@ -18,7 +15,7 @@ internal static class HostingExtensions
     {
         var configuration = builder.Configuration;
 
-        var connectionString = configuration.GetConnectionString("YehorConnection");
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         var migrationAssembly = typeof(Config).Assembly.GetName().Name;
         
@@ -29,10 +26,9 @@ internal static class HostingExtensions
             options.UseSqlServer(connectionString, sqlOptions => sqlOptions.MigrationsAssembly(migrationAssembly));
         });
 
-        builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+        builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        //var isBuilder = 
         builder.Services
             .AddIdentityServer(options =>
             {
@@ -47,16 +43,15 @@ internal static class HostingExtensions
             // this adds the config data from DB (clients, resources, CORS)
             .AddConfigurationStore(options =>
             {
+                options.DefaultSchema = "auth";
                 options.ConfigureDbContext = b =>
                     b.UseSqlServer(connectionString,
                         dbOpts => dbOpts.MigrationsAssembly(migrationAssembly));
             })
-            // this is something you will want in production to reduce load on and requests to the DB
-            //.AddConfigurationStoreCache()
-            //
             // this adds the operational data from DB (codes, tokens, consents)
             .AddOperationalStore(options =>
             {
+                options.DefaultSchema = "auth";
                 options.ConfigureDbContext = b =>
                     b.UseSqlServer(connectionString,
                         dbOpts => dbOpts.MigrationsAssembly(migrationAssembly));
@@ -64,7 +59,7 @@ internal static class HostingExtensions
                 options.EnableTokenCleanup = true;
                 options.RemoveConsumedTokens = true;
             })
-            .AddAspNetIdentity<IdentityUser>();
+            .AddAspNetIdentity<ApplicationUser>();
 
         builder.Services.AddAuthentication()
             .AddGoogle(options =>
@@ -78,29 +73,11 @@ internal static class HostingExtensions
                 options.ClientSecret = "copy client secret from Google here";
             });
 
+        builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-        //// this adds the necessary config for the simple admin/config pages
-        //{
-        //    builder.Services.AddAuthorization(options =>
-        //        options.AddPolicy("admin",
-        //            policy => policy.RequireClaim("sub", "1"))
-        //    );
+        builder.Services.AddControllers();
 
-        //    builder.Services.Configure<RazorPagesOptions>(options =>
-        //        options.Conventions.AuthorizeFolder("/Admin", "admin"));
-
-        //    builder.Services.AddTransient<ClientRepository>();
-        //    builder.Services.AddTransient<IdentityScopeRepository>();
-        //    builder.Services.AddTransient<ApiScopeRepository>();
-        //}
-
-        //// if you want to use server-side sessions: https://blog.duendesoftware.com/posts/20220406_session_management/
-        //// then enable it
-        ////isBuilder.AddServerSideSessions();
-        ////
-        //// and put some authorization on the admin/management pages using the same policy created above
-        ////builder.Services.Configure<RazorPagesOptions>(options =>
-        ////    options.Conventions.AuthorizeFolder("/ServerSideSessions", "admin"));
+        builder.Services.AddScoped<AuthService>();
 
         return builder.Build();
     }
@@ -119,7 +96,12 @@ internal static class HostingExtensions
         app.UseStaticFiles();
         app.UseRouting();
         app.UseIdentityServer();
+        app.UseAuthentication();
         app.UseAuthorization();
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
 
         app.MapRazorPages()
             .RequireAuthorization();

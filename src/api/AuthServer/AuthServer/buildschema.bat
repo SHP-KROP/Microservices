@@ -8,4 +8,4 @@ dotnet ef database update -c ConfigurationDbContext
 dotnet ef database update -c PersistedGrantDbContext
 dotnet ef database update -c ApplicationDbContext
 
-dotnet run bin/debug/net6.0/AuthServer /seed
+dotnet run bin/Debug/net6.0/AuthServer /seed

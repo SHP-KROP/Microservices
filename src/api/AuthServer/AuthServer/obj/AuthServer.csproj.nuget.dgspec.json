@@ -46,6 +46,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Duende.IdentityServer.AspNetIdentity": {
               "target": "Package",
               "version": "[6.2.0, )"
@@ -53,6 +61,10 @@
             "Duende.IdentityServer.EntityFramework": {
               "target": "Package",
               "version": "[6.2.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
@@ -75,6 +87,10 @@
               "version": "[6.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[6.0.0, )"
             },

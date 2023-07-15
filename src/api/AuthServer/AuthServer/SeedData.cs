@@ -6,6 +6,7 @@ using Duende.IdentityServer.Models;
 using IdentityModel;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using AuthServer.Database;
 
 namespace AuthServer;
 
@@ -15,8 +16,9 @@ public class SeedData
     {
         using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
         {
-            var context = scope.ServiceProvider.GetService<ConfigurationDbContext>();
-            EnsureSeedData(context);
+            var configurationContext = scope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
+
+            EnsureSeedData(configurationContext);
             EnsureUsers(scope);
         }
     }
@@ -88,13 +90,15 @@ public class SeedData
 
     private static void EnsureUsers(IServiceScope scope)
     {
-        var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+        var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
         var alice = userMgr.FindByNameAsync("alice").Result;
         if (alice == null)
         {
-            alice = new IdentityUser
+            alice = new ApplicationUser
             {
                 UserName = "alice",
+                Name = "alice",
+                Surname = "smith",
                 Email = "AliceSmith@email.com",
                 EmailConfirmed = true,
             };
@@ -126,9 +130,11 @@ public class SeedData
         var bob = userMgr.FindByNameAsync("bob").Result;
         if (bob == null)
         {
-            bob = new IdentityUser
+            bob = new ApplicationUser
             {
                 UserName = "bob",
+                Name = "bob",
+                Surname = "smith",
                 Email = "BobSmith@email.com",
                 EmailConfirmed = true
             };

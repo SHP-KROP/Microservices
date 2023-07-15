@@ -12,13 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuthServer.Migrations.PersistedGrantDb
 {
     [DbContext(typeof(PersistedGrantDbContext))]
-    [Migration("20230710224020_InitialIsentityServerMigration")]
+    [Migration("20230713130341_InitialIsentityServerMigration")]
     partial class InitialIsentityServerMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("auth")
                 .HasAnnotation("ProductVersion", "6.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -71,7 +72,7 @@ namespace AuthServer.Migrations.PersistedGrantDb
 
                     b.HasIndex("Expiration");
 
-                    b.ToTable("DeviceCodes", (string)null);
+                    b.ToTable("DeviceCodes", "auth");
                 });
 
             modelBuilder.Entity("Duende.IdentityServer.EntityFramework.Entities.Key", b =>
@@ -107,7 +108,7 @@ namespace AuthServer.Migrations.PersistedGrantDb
 
                     b.HasIndex("Use");
 
-                    b.ToTable("Keys", (string)null);
+                    b.ToTable("Keys", "auth");
                 });
 
             modelBuilder.Entity("Duende.IdentityServer.EntityFramework.Entities.PersistedGrant", b =>
@@ -172,7 +173,7 @@ namespace AuthServer.Migrations.PersistedGrantDb
 
                     b.HasIndex("SubjectId", "SessionId", "Type");
 
-                    b.ToTable("PersistedGrants", (string)null);
+                    b.ToTable("PersistedGrants", "auth");
                 });
 
             modelBuilder.Entity("Duende.IdentityServer.EntityFramework.Entities.ServerSideSession", b =>
@@ -232,7 +233,7 @@ namespace AuthServer.Migrations.PersistedGrantDb
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("ServerSideSessions", (string)null);
+                    b.ToTable("ServerSideSessions", "auth");
                 });
 #pragma warning restore 612, 618
         }

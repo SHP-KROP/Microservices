@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dvdXRcTG9nZ2VkT3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Projects/OnlineAuction/src/api/AuthServer/AuthServer/Pages/Account/Register/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxSZWdpc3RlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Projects/OnlineAuction/src/api/AuthServer/AuthServer/Pages/Admin/ApiScopes/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQXBpU2NvcGVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

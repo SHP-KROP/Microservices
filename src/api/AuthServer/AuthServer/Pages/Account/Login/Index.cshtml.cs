@@ -18,7 +18,7 @@ public class Index : PageModel
 {
     private readonly IIdentityServerInteractionService _interaction;
     private readonly IEventService _events;
-    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly IAuthenticationSchemeProvider _schemeProvider;
     private readonly IIdentityProviderStore _identityProviderStore;
 
@@ -31,7 +31,7 @@ public class Index : PageModel
         IAuthenticationSchemeProvider schemeProvider,
         IIdentityProviderStore identityProviderStore,
         IEventService events,
-        SignInManager<IdentityUser> signInManager)
+        SignInManager<ApplicationUser> signInManager)
     {
         _interaction = interaction;
         _schemeProvider = schemeProvider;

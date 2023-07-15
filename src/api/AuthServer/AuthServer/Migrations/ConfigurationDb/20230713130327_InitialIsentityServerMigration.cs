@@ -9,8 +9,12 @@ namespace AuthServer.Migrations.ConfigurationDb
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "auth");
+
             migrationBuilder.CreateTable(
                 name: "ApiResources",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -34,6 +38,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ApiScopes",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -57,6 +62,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "Clients",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -115,6 +121,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "IdentityProviders",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -136,6 +143,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "IdentityResources",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -158,6 +166,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ApiResourceClaims",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -171,6 +180,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ApiResourceClaims_ApiResources_ApiResourceId",
                         column: x => x.ApiResourceId,
+                        principalSchema: "auth",
                         principalTable: "ApiResources",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -178,6 +188,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ApiResourceProperties",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -192,6 +203,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ApiResourceProperties_ApiResources_ApiResourceId",
                         column: x => x.ApiResourceId,
+                        principalSchema: "auth",
                         principalTable: "ApiResources",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -199,6 +211,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ApiResourceScopes",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -212,6 +225,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ApiResourceScopes_ApiResources_ApiResourceId",
                         column: x => x.ApiResourceId,
+                        principalSchema: "auth",
                         principalTable: "ApiResources",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -219,6 +233,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ApiResourceSecrets",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -236,6 +251,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ApiResourceSecrets_ApiResources_ApiResourceId",
                         column: x => x.ApiResourceId,
+                        principalSchema: "auth",
                         principalTable: "ApiResources",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -243,6 +259,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ApiScopeClaims",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -256,6 +273,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ApiScopeClaims_ApiScopes_ScopeId",
                         column: x => x.ScopeId,
+                        principalSchema: "auth",
                         principalTable: "ApiScopes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -263,6 +281,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ApiScopeProperties",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -277,6 +296,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ApiScopeProperties_ApiScopes_ScopeId",
                         column: x => x.ScopeId,
+                        principalSchema: "auth",
                         principalTable: "ApiScopes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -284,6 +304,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ClientClaims",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -298,6 +319,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ClientClaims_Clients_ClientId",
                         column: x => x.ClientId,
+                        principalSchema: "auth",
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -305,6 +327,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ClientCorsOrigins",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -318,6 +341,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ClientCorsOrigins_Clients_ClientId",
                         column: x => x.ClientId,
+                        principalSchema: "auth",
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -325,6 +349,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ClientGrantTypes",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -338,6 +363,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ClientGrantTypes_Clients_ClientId",
                         column: x => x.ClientId,
+                        principalSchema: "auth",
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -345,6 +371,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ClientIdPRestrictions",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -358,6 +385,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ClientIdPRestrictions_Clients_ClientId",
                         column: x => x.ClientId,
+                        principalSchema: "auth",
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -365,6 +393,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ClientPostLogoutRedirectUris",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -378,6 +407,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ClientPostLogoutRedirectUris_Clients_ClientId",
                         column: x => x.ClientId,
+                        principalSchema: "auth",
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -385,6 +415,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ClientProperties",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -399,6 +430,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ClientProperties_Clients_ClientId",
                         column: x => x.ClientId,
+                        principalSchema: "auth",
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -406,6 +438,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ClientRedirectUris",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -419,6 +452,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ClientRedirectUris_Clients_ClientId",
                         column: x => x.ClientId,
+                        principalSchema: "auth",
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -426,6 +460,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ClientScopes",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -439,6 +474,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ClientScopes_Clients_ClientId",
                         column: x => x.ClientId,
+                        principalSchema: "auth",
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -446,6 +482,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "ClientSecrets",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -463,6 +500,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_ClientSecrets_Clients_ClientId",
                         column: x => x.ClientId,
+                        principalSchema: "auth",
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -470,6 +508,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "IdentityResourceClaims",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -483,6 +522,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_IdentityResourceClaims_IdentityResources_IdentityResourceId",
                         column: x => x.IdentityResourceId,
+                        principalSchema: "auth",
                         principalTable: "IdentityResources",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -490,6 +530,7 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateTable(
                 name: "IdentityResourceProperties",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -504,6 +545,7 @@ namespace AuthServer.Migrations.ConfigurationDb
                     table.ForeignKey(
                         name: "FK_IdentityResourceProperties_IdentityResources_IdentityResourceId",
                         column: x => x.IdentityResourceId,
+                        principalSchema: "auth",
                         principalTable: "IdentityResources",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -511,130 +553,152 @@ namespace AuthServer.Migrations.ConfigurationDb
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApiResourceClaims_ApiResourceId_Type",
+                schema: "auth",
                 table: "ApiResourceClaims",
                 columns: new[] { "ApiResourceId", "Type" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApiResourceProperties_ApiResourceId_Key",
+                schema: "auth",
                 table: "ApiResourceProperties",
                 columns: new[] { "ApiResourceId", "Key" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApiResources_Name",
+                schema: "auth",
                 table: "ApiResources",
                 column: "Name",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApiResourceScopes_ApiResourceId_Scope",
+                schema: "auth",
                 table: "ApiResourceScopes",
                 columns: new[] { "ApiResourceId", "Scope" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApiResourceSecrets_ApiResourceId",
+                schema: "auth",
                 table: "ApiResourceSecrets",
                 column: "ApiResourceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApiScopeClaims_ScopeId_Type",
+                schema: "auth",
                 table: "ApiScopeClaims",
                 columns: new[] { "ScopeId", "Type" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApiScopeProperties_ScopeId_Key",
+                schema: "auth",
                 table: "ApiScopeProperties",
                 columns: new[] { "ScopeId", "Key" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApiScopes_Name",
+                schema: "auth",
                 table: "ApiScopes",
                 column: "Name",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClientClaims_ClientId_Type_Value",
+                schema: "auth",
                 table: "ClientClaims",
                 columns: new[] { "ClientId", "Type", "Value" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClientCorsOrigins_ClientId_Origin",
+                schema: "auth",
                 table: "ClientCorsOrigins",
                 columns: new[] { "ClientId", "Origin" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClientGrantTypes_ClientId_GrantType",
+                schema: "auth",
                 table: "ClientGrantTypes",
                 columns: new[] { "ClientId", "GrantType" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClientIdPRestrictions_ClientId_Provider",
+                schema: "auth",
                 table: "ClientIdPRestrictions",
                 columns: new[] { "ClientId", "Provider" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClientPostLogoutRedirectUris_ClientId_PostLogoutRedirectUri",
+                schema: "auth",
                 table: "ClientPostLogoutRedirectUris",
                 columns: new[] { "ClientId", "PostLogoutRedirectUri" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClientProperties_ClientId_Key",
+                schema: "auth",
                 table: "ClientProperties",
                 columns: new[] { "ClientId", "Key" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClientRedirectUris_ClientId_RedirectUri",
+                schema: "auth",
                 table: "ClientRedirectUris",
                 columns: new[] { "ClientId", "RedirectUri" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Clients_ClientId",
+                schema: "auth",
                 table: "Clients",
                 column: "ClientId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClientScopes_ClientId_Scope",
+                schema: "auth",
                 table: "ClientScopes",
                 columns: new[] { "ClientId", "Scope" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClientSecrets_ClientId",
+                schema: "auth",
                 table: "ClientSecrets",
                 column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_IdentityProviders_Scheme",
+                schema: "auth",
                 table: "IdentityProviders",
                 column: "Scheme",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_IdentityResourceClaims_IdentityResourceId_Type",
+                schema: "auth",
                 table: "IdentityResourceClaims",
                 columns: new[] { "IdentityResourceId", "Type" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_IdentityResourceProperties_IdentityResourceId_Key",
+                schema: "auth",
                 table: "IdentityResourceProperties",
                 columns: new[] { "IdentityResourceId", "Key" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_IdentityResources_Name",
+                schema: "auth",
                 table: "IdentityResources",
                 column: "Name",
                 unique: true);
@@ -643,70 +707,92 @@ namespace AuthServer.Migrations.ConfigurationDb
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ApiResourceClaims");
+                name: "ApiResourceClaims",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ApiResourceProperties");
+                name: "ApiResourceProperties",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ApiResourceScopes");
+                name: "ApiResourceScopes",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ApiResourceSecrets");
+                name: "ApiResourceSecrets",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ApiScopeClaims");
+                name: "ApiScopeClaims",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ApiScopeProperties");
+                name: "ApiScopeProperties",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ClientClaims");
+                name: "ClientClaims",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ClientCorsOrigins");
+                name: "ClientCorsOrigins",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ClientGrantTypes");
+                name: "ClientGrantTypes",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ClientIdPRestrictions");
+                name: "ClientIdPRestrictions",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ClientPostLogoutRedirectUris");
+                name: "ClientPostLogoutRedirectUris",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ClientProperties");
+                name: "ClientProperties",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ClientRedirectUris");
+                name: "ClientRedirectUris",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ClientScopes");
+                name: "ClientScopes",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ClientSecrets");
+                name: "ClientSecrets",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "IdentityProviders");
+                name: "IdentityProviders",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "IdentityResourceClaims");
+                name: "IdentityResourceClaims",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "IdentityResourceProperties");
+                name: "IdentityResourceProperties",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ApiResources");
+                name: "ApiResources",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ApiScopes");
+                name: "ApiScopes",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "Clients");
+                name: "Clients",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "IdentityResources");
+                name: "IdentityResources",
+                schema: "auth");
         }
     }
 }

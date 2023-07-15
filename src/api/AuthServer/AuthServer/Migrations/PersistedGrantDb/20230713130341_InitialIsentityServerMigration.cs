@@ -9,8 +9,12 @@ namespace AuthServer.Migrations.PersistedGrantDb
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "auth");
+
             migrationBuilder.CreateTable(
                 name: "DeviceCodes",
+                schema: "auth",
                 columns: table => new
                 {
                     UserCode = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
@@ -30,6 +34,7 @@ namespace AuthServer.Migrations.PersistedGrantDb
 
             migrationBuilder.CreateTable(
                 name: "Keys",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -48,6 +53,7 @@ namespace AuthServer.Migrations.PersistedGrantDb
 
             migrationBuilder.CreateTable(
                 name: "PersistedGrants",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -70,6 +76,7 @@ namespace AuthServer.Migrations.PersistedGrantDb
 
             migrationBuilder.CreateTable(
                 name: "ServerSideSessions",
+                schema: "auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -91,32 +98,38 @@ namespace AuthServer.Migrations.PersistedGrantDb
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeviceCodes_DeviceCode",
+                schema: "auth",
                 table: "DeviceCodes",
                 column: "DeviceCode",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeviceCodes_Expiration",
+                schema: "auth",
                 table: "DeviceCodes",
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Keys_Use",
+                schema: "auth",
                 table: "Keys",
                 column: "Use");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_ConsumedTime",
+                schema: "auth",
                 table: "PersistedGrants",
                 column: "ConsumedTime");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Expiration",
+                schema: "auth",
                 table: "PersistedGrants",
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Key",
+                schema: "auth",
                 table: "PersistedGrants",
                 column: "Key",
                 unique: true,
@@ -124,37 +137,44 @@ namespace AuthServer.Migrations.PersistedGrantDb
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_SubjectId_ClientId_Type",
+                schema: "auth",
                 table: "PersistedGrants",
                 columns: new[] { "SubjectId", "ClientId", "Type" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_SubjectId_SessionId_Type",
+                schema: "auth",
                 table: "PersistedGrants",
                 columns: new[] { "SubjectId", "SessionId", "Type" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServerSideSessions_DisplayName",
+                schema: "auth",
                 table: "ServerSideSessions",
                 column: "DisplayName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServerSideSessions_Expires",
+                schema: "auth",
                 table: "ServerSideSessions",
                 column: "Expires");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServerSideSessions_Key",
+                schema: "auth",
                 table: "ServerSideSessions",
                 column: "Key",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServerSideSessions_SessionId",
+                schema: "auth",
                 table: "ServerSideSessions",
                 column: "SessionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServerSideSessions_SubjectId",
+                schema: "auth",
                 table: "ServerSideSessions",
                 column: "SubjectId");
         }
@@ -162,16 +182,20 @@ namespace AuthServer.Migrations.PersistedGrantDb
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DeviceCodes");
+                name: "DeviceCodes",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "Keys");
+                name: "Keys",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "PersistedGrants");
+                name: "PersistedGrants",
+                schema: "auth");
 
             migrationBuilder.DropTable(
-                name: "ServerSideSessions");
+                name: "ServerSideSessions",
+                schema: "auth");
         }
     }
 }
