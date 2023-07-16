@@ -9,6 +9,9 @@ using AuthServer.Services;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using AuthServer.Common;
+using AuthServer.Configuration;
+using AuthServer.Valdators;
+using Microsoft.AspNetCore.Hosting;
 
 namespace AuthServer;
 
@@ -83,7 +86,7 @@ internal static class HostingExtensions
         builder.Services.AddScoped<AuthService>();
 
         builder.Services.AddFluentValidation();
-        builder.Services.AddValidatorsFromAssemblyContaining<IAssemblyMarker>();
+        builder.Services.AddValidatorsFromAssemblyContaining<AuthServer.Common.IAssemblyMarker>();
 
         return builder.Build();
     }

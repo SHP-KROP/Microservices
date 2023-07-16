@@ -1,4 +1,6 @@
 ﻿using AuthServer.DTO;
+using AuthServer.Exceptions;
+using AuthServer.Services.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 
@@ -7,14 +9,14 @@ namespace AuthServer.Services
     public class AuthService
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
+        private readonly IJwtService _jwtService;
 
-        public AuthService(UserManager<ApplicationUser> userManager, IConfiguration configuration, IMapper mapper)
+        public AuthService(UserManager<ApplicationUser> userManager, IMapper mapper, IJwtService jwtService)
         {
             _userManager = userManager;
-            _configuration = configuration;
             _mapper = mapper;
+            _jwtService = jwtService;
         }
 
         public async Task<UserDTO> Register(UserRegisterDTO userRegisterDTO)
@@ -22,12 +24,7 @@ namespace AuthServer.Services
             var existingUser = await _userManager.FindByEmailAsync(userRegisterDTO.Email);
             if (existingUser != null)
             {
-                throw new InvalidOperationException("User with this email already exists");
-            }
-
-            if (userRegisterDTO.UserName == null)
-            {
-                userRegisterDTO.UserName = Guid.NewGuid().ToString();
+                throw new AlreadyExistingUserException("User with this email already exists");
             }
 
             var user = _mapper.Map<ApplicationUser>(userRegisterDTO);
@@ -48,7 +45,7 @@ namespace AuthServer.Services
 
             if (user == null)
             {
-                throw new InvalidOperationException($"There is no user with email {userLoginDTO.Email}");
+                throw new NotExistingUserException($"There is no user with email {userLoginDTO.Email}");
             }
 
             var result = await _userManager.CheckPasswordAsync(user, userLoginDTO.Password);
@@ -58,9 +55,7 @@ namespace AuthServer.Services
                 throw new InvalidOperationException("Wrong password");
             }
 
-            var jwtServece = new JwtService(_configuration);
-
-            var tokenString = jwtServece.GenerateJwtToken(user.Id, user.UserName, user.Email);
+            var tokenString = _jwtService.GenerateJwtToken(user);
 
             return tokenString;
         }

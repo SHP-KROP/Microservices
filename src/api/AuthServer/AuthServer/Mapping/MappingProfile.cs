@@ -8,10 +8,8 @@ namespace AuthServer.Mapping
         public MappingProfile()
         {
             CreateMap<UserRegisterDTO, ApplicationUser>();
-            CreateMap<ApplicationUser, UserRegisterDTO>();
 
             CreateMap<ApplicationUser, UserDTO>();
-            CreateMap<UserDTO, ApplicationUser>();
         }
     }
 }
