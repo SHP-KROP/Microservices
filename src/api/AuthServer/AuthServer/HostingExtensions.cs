@@ -1,17 +1,15 @@
+using AuthServer.Configuration;
 using AuthServer.Database;
+using AuthServer.Mapping;
+using AuthServer.Services;
+using AuthServer.Services.Interfaces;
+using AuthServer.Valdators;
 using Duende.IdentityServer;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using AutoMapper;
-using AuthServer.Mapping;
-using AuthServer.Services;
-using FluentValidation.AspNetCore;
-using FluentValidation;
-using AuthServer.Common;
-using AuthServer.Configuration;
-using AuthServer.Valdators;
-using Microsoft.AspNetCore.Hosting;
 
 namespace AuthServer;
 
@@ -84,9 +82,11 @@ internal static class HostingExtensions
         builder.Services.AddControllers();
 
         builder.Services.AddScoped<AuthService>();
+        builder.Services.AddScoped<IJwtService, JwtService>();
+        builder.Services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
 
         builder.Services.AddFluentValidation();
-        builder.Services.AddValidatorsFromAssemblyContaining<AuthServer.Common.IAssemblyMarker>();
+        builder.Services.AddValidatorsFromAssemblyContaining<AuthServer.Common.IAssemblyMarker>(filter: x => x.ValidatorType != typeof(PasswordValidator));
 
         return builder.Build();
     }
