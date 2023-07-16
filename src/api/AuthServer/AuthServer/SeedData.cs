@@ -1,12 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Serilog;
-using Duende.IdentityServer.EntityFramework.DbContexts;
+﻿using Duende.IdentityServer.EntityFramework.DbContexts;
 using Duende.IdentityServer.EntityFramework.Mappers;
 using Duende.IdentityServer.Models;
 using IdentityModel;
 using Microsoft.AspNetCore.Identity;
+using Serilog;
 using System.Security.Claims;
-using AuthServer.Database;
 
 namespace AuthServer;
 
