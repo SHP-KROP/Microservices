@@ -1,6 +1,9 @@
+using AuctionService.Application.Models.Auction.Validators;
 using AuctionService.Extensions;
 using AuctionService.Hubs;
 using AuctionService.Infrastructure.Persistence;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using ServiceRegistration.Extensions;
@@ -24,6 +27,10 @@ services.AddControllers();
 
 services.AddPersistenceServices(builder.Configuration);
 services.AddBusinessLogicServices();
+
+services.AddMvc();
+services.AddFluentValidationAutoValidation();
+services.AddValidatorsFromAssembly(typeof(AuctionCreateModelValidator).Assembly);
 
 builder.Host.UseSerilog((context, configuration) 
     => configuration.ReadFrom.Configuration(context.Configuration));
