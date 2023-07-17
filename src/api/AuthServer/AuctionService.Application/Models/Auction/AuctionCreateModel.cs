@@ -26,4 +26,7 @@ public sealed class AuctionCreateModel
             EndTime = createModel.EndTime,
             StartTime = createModel.StartTime
         };
+
+    public static implicit operator AuctionViewModel(AuctionCreateModel createModel) =>
+        (Core.Entities.Auction)createModel;
 }

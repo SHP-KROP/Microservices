@@ -1,3 +1,4 @@
+using AuctionService.Extensions;
 using AuctionService.Hubs;
 using AuctionService.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -21,12 +22,8 @@ services.AddDiscovery(builder.Configuration);
 services.AddSignalR();
 services.AddControllers();
 
-services.AddDbContext<AuctionDbContext>(opt =>
-{
-    opt.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        x => x.MigrationsAssembly(typeof(AuctionDbContext).Assembly.FullName));
-});
+services.AddPersistenceServices(builder.Configuration);
+services.AddBusinessLogicServices();
 
 builder.Host.UseSerilog((context, configuration) 
     => configuration.ReadFrom.Configuration(context.Configuration));
