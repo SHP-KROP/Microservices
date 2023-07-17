@@ -11,8 +11,8 @@ public sealed class AucitonService : IAuctionService
         
     }
     
-    public Task<Result<AuctionViewModel>> Create(AuctionCreateModel createModel)
+    public async Task<Result<AuctionViewModel>> Create(AuctionCreateModel createModel)
     {
-        
+        return Result.Fail("asd");
     }
 }

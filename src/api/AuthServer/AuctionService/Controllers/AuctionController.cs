@@ -15,6 +15,6 @@ public class AuctionController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(AuctionCreateModel createModel)
     {
-        
+        return Ok();
     }
 }
