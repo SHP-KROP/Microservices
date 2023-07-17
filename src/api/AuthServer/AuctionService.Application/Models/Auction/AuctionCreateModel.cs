@@ -25,5 +25,12 @@ public sealed class AuctionCreateModel
         };
 
     public static implicit operator AuctionViewModel(AuctionCreateModel createModel) =>
-        (Core.Entities.Auction)createModel;
+        new()
+        {
+            Id = createModel.Id,
+            AuctionType = createModel.AuctionType,
+            Name = createModel.Name,
+            Description = createModel.Description,
+            StartTime = createModel.StartTime
+        };
 }

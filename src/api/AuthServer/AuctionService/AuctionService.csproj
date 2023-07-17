@@ -24,4 +24,12 @@
       <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="AuctionService.Application.Tests\bin\Debug\net7.0\AuctionService.Application.Tests.deps.json" />
+      <_ContentIncludedByDefault Remove="AuctionService.Application.Tests\bin\Debug\net7.0\AuctionService.Application.Tests.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="AuctionService.Application.Tests\obj\AuctionService.Application.Tests.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="AuctionService.Application.Tests\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="AuctionService.Application.Tests\obj\project.packagespec.json" />
+    </ItemGroup>
+
 </Project>
