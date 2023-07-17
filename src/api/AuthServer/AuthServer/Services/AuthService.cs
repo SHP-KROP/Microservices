@@ -24,7 +24,7 @@ namespace AuthServer.Services
             var existingUser = await _userManager.FindByEmailAsync(userRegisterDTO.Email);
             if (existingUser != null)
             {
-                throw new AlreadyExistingUserException("User with this email already exists");
+                throw new AlreadyExistingUserException(existingUser.Email);
             }
 
             var user = _mapper.Map<ApplicationUser>(userRegisterDTO);
@@ -32,7 +32,7 @@ namespace AuthServer.Services
 
             if (!result.Succeeded)
             {
-                throw new InvalidOperationException("Failed to create user");
+                throw new CreatingUserException(result.Errors);
             }
 
             var userDto = _mapper.Map<UserDTO>(user);
@@ -45,14 +45,14 @@ namespace AuthServer.Services
 
             if (user == null)
             {
-                throw new NotExistingUserException($"There is no user with email {userLoginDTO.Email}");
+                throw new NotExistingUserException(userLoginDTO.Email);
             }
 
             var result = await _userManager.CheckPasswordAsync(user, userLoginDTO.Password);
 
             if (!result)
             {
-                throw new InvalidOperationException("Wrong password");
+                throw new WrongPasswordException();
             }
 
             var tokenString = _jwtService.GenerateJwtToken(user);

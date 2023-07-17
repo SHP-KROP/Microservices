@@ -2,8 +2,9 @@
 {
     public class AlreadyExistingUserException : Exception
     {
-        public AlreadyExistingUserException(string message) : base(message)
-        {
+        public AlreadyExistingUserException(string email)
+        : base($"User with email {email} already exists")
+        { 
         }
     }
 }
