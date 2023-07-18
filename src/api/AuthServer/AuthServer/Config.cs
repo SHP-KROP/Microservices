@@ -14,23 +14,26 @@ public static class Config
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
         {
-            new ApiScope("scope1"),
-            new ApiScope("scope2"),
+            // auction service
+            new ("auction-read"),
+            new ("auction-write"),
+            new ("auction-manage")
         };
 
     public static IEnumerable<Client> Clients =>
-        new Client[]
+        new []
         {
-            // m2m client credentials flow client
-            new Client
+            // m2m client credentials flow for auction service
+            new()
             {
-                ClientId = "m2m.client",
-                ClientName = "Client Credentials Client",
+                ClientId = "auction-service",
+                ClientName = "Auction Service",
 
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
-                ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
+                ClientSecrets = { new Secret("auction-service-secret".Sha256()) },
 
-                AllowedScopes = { "scope1", "scope2" }
+                AllowedScopes = { "auction-read", "auction-write", "auction-manage" },
+                AccessTokenType = AccessTokenType.Jwt
             },
 
             // interactive client using code flow + pkce

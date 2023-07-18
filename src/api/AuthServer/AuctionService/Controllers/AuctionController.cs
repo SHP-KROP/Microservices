@@ -1,6 +1,8 @@
+using System.Security.Claims;
 using AuctionService.Application.Models.Auction;
 using AuctionService.Application.Services.Abstractions;
 using AuctionService.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuctionService.Controllers;
@@ -17,9 +19,10 @@ public class AuctionController : Controller
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Create(AuctionCreateModel createModel)
     {
-        var result = await _auctionService.Create(createModel);
+        var result = await _auctionService.Create(createModel, User.FindFirstValue(ClaimTypes.NameIdentifier));
         
         return result.ToResponse();
     }

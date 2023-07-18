@@ -1,6 +1,7 @@
 using AuctionService.Application.Models.Auction.Validators;
 using AuctionService.Extensions;
 using AuctionService.Hubs;
+using Authentication.Extensions;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Serilog;
@@ -19,6 +20,8 @@ services.AddCors(x =>
             .AllowCredentials());
 });
 
+services.AddIdentityServerAuthentication(builder.Configuration);
+
 services.AddDiscovery(builder.Configuration);
 services.AddSignalR();
 services.AddControllers();
@@ -36,8 +39,10 @@ builder.Host.UseSerilog((context, configuration)
 var app = builder.Build();
 
 app.UseCors("DefaultPolicy");
-
 app.UseSerilogRequestLogging();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

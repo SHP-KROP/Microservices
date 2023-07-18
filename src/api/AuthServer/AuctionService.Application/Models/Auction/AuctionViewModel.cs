@@ -5,6 +5,8 @@ namespace AuctionService.Application.Models.Auction;
 public sealed class AuctionViewModel
 {
     public Guid Id { get; init; }
+    
+    public Guid UserId { get; init; }
 
     public string Name { get; init; }
 
@@ -20,6 +22,7 @@ public sealed class AuctionViewModel
         new()
         {
             Id = auction.Id,
+            UserId = auction.UserId,
             AuctionType = auction.AuctionType,
             Name = auction.Name,
             Description = auction.Description,

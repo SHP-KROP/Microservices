@@ -10,6 +10,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using ServiceRegistration.Extensions;
 
 namespace AuthServer;
 
@@ -24,6 +25,7 @@ internal static class HostingExtensions
         var migrationAssembly = typeof(Config).Assembly.GetName().Name;
         
         builder.Services.AddRazorPages();
+        builder.Services.AddDiscovery(configuration);
 
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         {
@@ -41,7 +43,6 @@ internal static class HostingExtensions
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
 
-                // see https://docs.duendesoftware.com/identityserver/v5/fundamentals/resources/
                 options.EmitStaticAudienceClaim = true;
             })
             // this adds the config data from DB (clients, resources, CORS)
@@ -59,20 +60,17 @@ internal static class HostingExtensions
                 options.ConfigureDbContext = b =>
                     b.UseSqlServer(connectionString,
                         dbOpts => dbOpts.MigrationsAssembly(migrationAssembly));
-                // this enables automatic token cleanup. this is optional.
                 options.EnableTokenCleanup = true;
                 options.RemoveConsumedTokens = true;
             })
-            .AddAspNetIdentity<ApplicationUser>();
+            .AddAspNetIdentity<ApplicationUser>()
+            .AddJwtBearerClientAuthentication();
 
         builder.Services.AddAuthentication()
             .AddGoogle(options =>
             {
                 options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
 
-                // register your IdentityServer with Google at https://console.developers.google.com
-                // enable the Google+ API
-                // set the redirect URI to https://localhost:5001/signin-google
                 options.ClientId = "copy client ID from Google here";
                 options.ClientSecret = "copy client secret from Google here";
             });

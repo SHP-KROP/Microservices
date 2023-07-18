@@ -23,14 +23,4 @@ public sealed class AuctionCreateModel
             Description = createModel.Description,
             StartTime = createModel.StartTime
         };
-
-    public static implicit operator AuctionViewModel(AuctionCreateModel createModel) =>
-        new()
-        {
-            Id = createModel.Id,
-            AuctionType = createModel.AuctionType,
-            Name = createModel.Name,
-            Description = createModel.Description,
-            StartTime = createModel.StartTime
-        };
 }
