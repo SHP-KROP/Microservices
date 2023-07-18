@@ -11,6 +11,10 @@ public class AuctionConfiguration : IEntityTypeConfiguration<Auction>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
+        builder.HasIndex(x => x.Name).IsUnique();
+
+        builder.Property(x => x.UserId).IsRequired();
+
         builder.Property(x => x.Description).HasMaxLength(200);
     }
 }
