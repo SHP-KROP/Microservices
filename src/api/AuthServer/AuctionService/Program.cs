@@ -1,10 +1,8 @@
 using AuctionService.Application.Models.Auction.Validators;
 using AuctionService.Extensions;
 using AuctionService.Hubs;
-using AuctionService.Infrastructure.Persistence;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Microsoft.EntityFrameworkCore;
 using Serilog;
 using ServiceRegistration.Extensions;
 
