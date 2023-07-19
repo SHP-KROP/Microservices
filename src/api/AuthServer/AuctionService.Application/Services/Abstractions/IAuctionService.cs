@@ -5,5 +5,5 @@ namespace AuctionService.Application.Services.Abstractions;
 
 public interface IAuctionService
 {
-    public Task<Result<AuctionViewModel>> Create(AuctionCreateModel createModel);
+    public Task<Result<AuctionViewModel>> Create(AuctionCreateModel createModel, string userId);
 }

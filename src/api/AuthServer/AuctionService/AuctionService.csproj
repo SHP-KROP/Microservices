@@ -9,12 +9,14 @@
     <ItemGroup>
       <ProjectReference Include="..\AuctionService.Application\AuctionService.Application.csproj" />
       <ProjectReference Include="..\AuctionService.Infrastructure\AuctionService.Infrastructure.csproj" />
+      <ProjectReference Include="..\Authentication\Authentication.csproj" />
       <ProjectReference Include="..\ServiceRegistration\ServiceRegistration.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.6.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.9" />
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.9" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
         <PrivateAssets>all</PrivateAssets>

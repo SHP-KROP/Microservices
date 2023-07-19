@@ -24,7 +24,7 @@ public class AuctionServiceTests
     {
         var createModel = new AuctionCreateModel();
         
-        await _sut.Create(createModel);
+        await _sut.Create(createModel, Guid.NewGuid().ToString());
 
         await _auctionRepository.Received(1).CreateAuction(Arg.Is<Auction>(x => x.Id == createModel.Id));
     }

@@ -1,7 +1,6 @@
 using Consul;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ServiceRegistration.Abstractions;
 using ServiceRegistration.Options;
 
 namespace ServiceRegistration.Extensions;
