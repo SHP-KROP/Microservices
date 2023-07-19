@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as signalR from '@microsoft/signalr';
 
 // TODO: Use this logic as example for future SignalR interactions
-const AuctionMessaging: React.FC = () => {
+function AuctionMessaging() {
   const [connection, setConnection] = useState<signalR.HubConnection | null>(
     null
   );
@@ -48,9 +48,11 @@ const AuctionMessaging: React.FC = () => {
 
   return (
     <div>
-      <button onClick={sendMessage}>Send Message</button>
+      <button type="button" onClick={sendMessage}>
+        Send Message
+      </button>
     </div>
   );
-};
+}
 
 export default AuctionMessaging;
