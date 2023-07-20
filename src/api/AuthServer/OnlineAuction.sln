@@ -15,15 +15,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionService", "AuctionSe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuctionService", "AuctionService", "{5F0210C5-1B2D-4E18-8D98-AED23362BAAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionService.Core", "AuctionService.Core\AuctionService.Core.csproj", "{49B0C894-CA58-474B-973D-4613B4A13DA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionService.Core", "AuctionService.Core\AuctionService.Core.csproj", "{49B0C894-CA58-474B-973D-4613B4A13DA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionService.Application", "AuctionService.Application\AuctionService.Application.csproj", "{D4DE1069-7EC8-4FB3-9A23-17B13E275EA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionService.Application", "AuctionService.Application\AuctionService.Application.csproj", "{D4DE1069-7EC8-4FB3-9A23-17B13E275EA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionService.Infrastructure", "AuctionService.Infrastructure\AuctionService.Infrastructure.csproj", "{1B971A68-8D16-4D34-ADF9-5BDBCA3987AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionService.Infrastructure", "AuctionService.Infrastructure\AuctionService.Infrastructure.csproj", "{1B971A68-8D16-4D34-ADF9-5BDBCA3987AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionService.Application.UnitTests", "AuctionService.Application.UnitTests\AuctionService.Application.UnitTests.csproj", "{EE1717AF-75FC-433B-AAD1-A1E714BF55F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionService.Application.UnitTests", "AuctionService.Application.UnitTests\AuctionService.Application.UnitTests.csproj", "{EE1717AF-75FC-433B-AAD1-A1E714BF55F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Authentication\Authentication.csproj", "{8C2F90F8-E223-4DA6-B30B-59057CDE981E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "Authentication\Authentication.csproj", "{8C2F90F8-E223-4DA6-B30B-59057CDE981E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthServer", "AuthServer", "{300987F8-E54E-43A3-926D-3C5D875B244D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthServer.UnitTests", "AuthServer.UnitTests\AuthServer.UnitTests.csproj", "{CE377661-E3E0-49BE-B76E-437ADF059246}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,11 +71,16 @@ Global
 		{8C2F90F8-E223-4DA6-B30B-59057CDE981E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C2F90F8-E223-4DA6-B30B-59057CDE981E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C2F90F8-E223-4DA6-B30B-59057CDE981E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE377661-E3E0-49BE-B76E-437ADF059246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE377661-E3E0-49BE-B76E-437ADF059246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE377661-E3E0-49BE-B76E-437ADF059246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE377661-E3E0-49BE-B76E-437ADF059246}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{D01A9963-F44F-4FB8-8C3A-E65F34337DBF} = {300987F8-E54E-43A3-926D-3C5D875B244D}
 		{089C916D-9A1E-4A42-AE21-4792FC2DDFC6} = {57EFE3F9-64C1-4D3A-80C5-299CCAD3B194}
 		{48E513C0-29C4-4B63-B8A0-06FD23483912} = {5F0210C5-1B2D-4E18-8D98-AED23362BAAB}
 		{49B0C894-CA58-474B-973D-4613B4A13DA8} = {5F0210C5-1B2D-4E18-8D98-AED23362BAAB}
@@ -79,5 +88,6 @@ Global
 		{1B971A68-8D16-4D34-ADF9-5BDBCA3987AB} = {5F0210C5-1B2D-4E18-8D98-AED23362BAAB}
 		{EE1717AF-75FC-433B-AAD1-A1E714BF55F2} = {5F0210C5-1B2D-4E18-8D98-AED23362BAAB}
 		{8C2F90F8-E223-4DA6-B30B-59057CDE981E} = {57EFE3F9-64C1-4D3A-80C5-299CCAD3B194}
+		{CE377661-E3E0-49BE-B76E-437ADF059246} = {300987F8-E54E-43A3-926D-3C5D875B244D}
 	EndGlobalSection
 EndGlobal

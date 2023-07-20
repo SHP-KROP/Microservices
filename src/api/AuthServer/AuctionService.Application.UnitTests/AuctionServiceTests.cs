@@ -3,7 +3,6 @@ using AuctionService.Core.Entities;
 using AuctionService.Core.Repositories;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using AuctionService = AuctionService.Application.Services.AuctionService;
 
 namespace AuctionService.Application.UnitTests;
 

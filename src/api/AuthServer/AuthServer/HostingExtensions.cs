@@ -75,7 +75,7 @@ internal static class HostingExtensions
                 options.ClientSecret = "copy client secret from Google here";
             });
 
-        builder.Services.AddAutoMapper(typeof(MappingProfile));
+        builder.Services.AddAutoMapper(typeof(AuthMappingProfile));
 
         builder.Services.AddControllers();
 
