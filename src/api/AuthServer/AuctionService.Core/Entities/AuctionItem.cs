@@ -30,7 +30,7 @@ public class AuctionItem
         
         ActualPrice = updatedPrice;
         
-        var bid = new Bid(userId, amount, date, updatedPrice);
+        var bid = new Bid(Id, userId, amount, date, updatedPrice);
         
         _bids.Add(bid);
 

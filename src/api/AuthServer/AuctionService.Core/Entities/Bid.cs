@@ -2,8 +2,9 @@ namespace AuctionService.Core.Entities;
 
 public class Bid
 {
-    internal Bid(Guid userId, decimal amount, DateTimeOffset date, decimal actualPrice)
+    internal Bid(Guid auctionItemId, Guid userId, decimal amount, DateTimeOffset date, decimal actualPrice)
     {
+        AuctionItemId = auctionItemId;
         UserId = userId;
         Amount = amount;
         Date = date;
@@ -12,11 +13,13 @@ public class Bid
 
     public int Id { get; private set; }
 
-    public Guid UserId { get; }
+    public Guid AuctionItemId { get; private set; }
+    
+    public Guid UserId { get; private set; }
 
-    public decimal Amount { get; }
+    public decimal Amount { get; private set; }
 
-    public DateTimeOffset Date { get; }
+    public DateTimeOffset Date { get; private set; }
 
-    public decimal ActualPrice { get; }
+    public decimal ActualPrice { get; private set; }
 }
