@@ -9,5 +9,9 @@ public class AuctionItemConfiguration : IEntityTypeConfiguration<AuctionItem>
     public void Configure(EntityTypeBuilder<AuctionItem> builder)
     {
         builder.HasKey(x => x.Id);
+
+        builder.HasMany(x => x.Bids)
+            .WithOne()
+            .HasForeignKey(x => x.AuctionItemId);
     }
 }
