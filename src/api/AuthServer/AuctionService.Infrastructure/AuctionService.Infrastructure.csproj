@@ -7,6 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Azure.Storage.Blobs" Version="12.17.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
         <PrivateAssets>all</PrivateAssets>
@@ -16,7 +18,14 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\AuctionService.Application\AuctionService.Application.csproj" />
       <ProjectReference Include="..\AuctionService.Core\AuctionService.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Azure.Storage.Blobs">
+        <HintPath>..\..\..\..\..\..\..\Users\Oleksandr Bondarenko\.nuget\packages\azure.storage.blobs\12.17.0\lib\net6.0\Azure.Storage.Blobs.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
