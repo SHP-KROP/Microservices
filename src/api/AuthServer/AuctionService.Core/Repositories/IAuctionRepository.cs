@@ -8,5 +8,9 @@ public interface IAuctionRepository
 
     Task<Auction> GetAuctionById(Guid id);
 
+    Task<IEnumerable<Auction>> GetAuctionsByIds(IEnumerable<Guid> ids);
+
+    Task<IEnumerable<Guid>> GetReadyToStartAuctionsSince(DateTimeOffset timeFrom);
+
     Task<bool> Commit();
 }

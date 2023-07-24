@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using AuctionService.Core.Entities;
 using AuctionService.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,28 @@ public sealed class AuctionRepository : IAuctionRepository
     {
         _context = context;
         _logger = logger;
+    }
+
+    public async Task<IEnumerable<Auction>> GetAuctionsByIds(IEnumerable<Guid> ids)
+    {
+        var auctions = _context.Auctions
+            .Include(x => x.AuctionItems)
+            .ThenInclude(x => x.Bids)
+            .Where(auction => ids.Contains(auction.Id));
+
+        return await auctions.ToListAsync();
+    }
+
+    public async Task<IEnumerable<Guid>> GetReadyToStartAuctionsSince(DateTimeOffset timeFrom)
+    {
+        var auctionsReadyToBeStarted = _context.Auctions
+            .Include(x => x.AuctionItems)
+            .Where(auction => 
+                auction.EndTime == null
+                && auction.StartTime < timeFrom
+                && !auction.AuctionItems.Any(item => item.IsSellingNow));
+
+        return await auctionsReadyToBeStarted.Select(x => x.Id).ToListAsync();
     }
     
     public async Task<bool> CreateAuction(Auction auction)
