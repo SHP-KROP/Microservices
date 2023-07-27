@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import RegistrationForm from '../../components/forms/RegistrationForm';
 import LoginForm from '../../components/forms/LoginForm';
 import { IRegisterFormValues } from '../../interfaces/Forms/IRegisterFormValues';
 import { ILoginFormValues } from '../../interfaces/Forms/ILoginFormValues';
-import { login, register } from '../../api/api';
+import apiClient from '../../api/rest/api';
 import setAuthenticationCookies from './Logic/setAuthenticationCookies';
 
 function AuthPage() {
@@ -15,8 +15,8 @@ function AuthPage() {
   const toggleForm = () => {
     setShowLoginForm((prev) => !prev);
   };
-  const loginMutation = useMutation(login);
-  const registrationMutation = useMutation(register);
+  const loginMutation = useMutation(apiClient.login);
+  const registrationMutation = useMutation(apiClient.register);
 
   const handleLogin = async (values: ILoginFormValues) => {
     try {
@@ -25,6 +25,7 @@ function AuthPage() {
       setAuthenticationCookies(token);
 
       navigate('/home');
+      toast.success('Login successful. Welcome!');
     } catch (error) {
       toast.error('Login failed. Please check your credentials and try again.');
     }
@@ -34,7 +35,6 @@ function AuthPage() {
     try {
       await registrationMutation.mutateAsync(values);
       await handleLogin(values);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(
         error.response?.data ?? 'Registration failed. Please try again.'
@@ -48,7 +48,6 @@ function AuthPage() {
 
   return (
     <div className="h-screen w-full bg-welcome bg-no-repeat bg-cover bg-center flex justify-center items-center">
-      <ToastContainer />
       {showLoginForm ? (
         <LoginForm
           onSubmit={handleLogin}
