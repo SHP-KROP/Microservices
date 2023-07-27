@@ -1,8 +1,14 @@
+using AuctionService.Application.Models.Auction.Validators;
+using AuctionService.Application.Services.Abstractions;
+using AuctionService.Extensions;
 using AuctionService.Hubs;
-using Microsoft.AspNetCore.Mvc;
+using AuctionService.Infrastructure;
+using Authentication.Extensions;
+using Azure.Storage.Blobs;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Serilog;
 using ServiceRegistration.Extensions;
-using ILogger = Serilog.ILogger;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -17,8 +23,21 @@ services.AddCors(x =>
             .AllowCredentials());
 });
 
+services.AddIdentityServerAuthentication(builder.Configuration);
+
 services.AddDiscovery(builder.Configuration);
 services.AddSignalR();
+services.AddControllers();
+
+services.AddPersistenceServices(builder.Configuration);
+services.AddBusinessLogicServices();
+services.AddSingleton(_ => new BlobServiceClient(
+        builder.Configuration.GetValue<string>("BlobServiceAccountConnectionString")));
+services.AddScoped<IBlobService, BlobService>();
+
+services.AddMvc();
+services.AddFluentValidationAutoValidation();
+services.AddValidatorsFromAssembly(typeof(AuctionCreateModelValidator).Assembly);
 
 builder.Host.UseSerilog((context, configuration) 
     => configuration.ReadFrom.Configuration(context.Configuration));
@@ -26,15 +45,12 @@ builder.Host.UseSerilog((context, configuration)
 var app = builder.Build();
 
 app.UseCors("DefaultPolicy");
-
 app.UseSerilogRequestLogging();
 
-app.MapGet("/api/auction", ([FromServices] ILogger logger) =>
-{
-    logger.Information("ASDF!!!!");
+app.UseAuthentication();
+app.UseAuthorization();
 
-    return new ObjectResult("AUCTION!!!");
-});
+app.MapControllers();
 
 app.MapHub<AuctionHub>("messaging-auction");
 

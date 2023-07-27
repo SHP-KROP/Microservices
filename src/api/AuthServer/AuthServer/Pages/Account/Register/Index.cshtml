@@ -1,0 +1,51 @@
+﻿@page
+@model AuthServer.Pages.Account.Register.Index
+<div class="register-page">
+    <div class="lead">
+        <h1>Register</h1>
+        <p>Choose how to register</p>
+    </div>
+
+    <partial name="_ValidationSummary" />
+    @if (Model.Input != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach (var error in Model.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <div class="row">
+
+
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Local Account</h2>
+                    </div>
+
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="Username">Username</label>
+                                <input type="text" class="form-control" id="Username" name="Input.Username" value="@Model.Input?.Username" required />
+                            </div>
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input type="email" class="form-control" id="Email" name="Input.Email" value="@Model.Input?.Email" required />
+                        </div>
+                            <div class="form-group">
+                                <label for="Password">Password</label>
+                                <input type="password" class="form-control" id="Password" name="Input.Password" required />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
