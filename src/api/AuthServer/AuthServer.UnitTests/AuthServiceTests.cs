@@ -3,6 +3,7 @@ using AuthServer.Mapping;
 using AuthServer.Services;
 using AuthServer.Services.Interfaces;
 using AutoMapper;
+using FluentAssertions;
 using Microsoft.AspNetCore.Identity;
 using Moq;
 
@@ -10,79 +11,83 @@ namespace AuthServer.UnitTests
 {
     public class AuthServiceTests
     {
-        private readonly AuthService _authService;
-        private readonly Mock<UserManager<ApplicationUser>> _mockUserManager;
-        private readonly Mock<IJwtService> _mockJwtService;
-        private readonly Mock<IMapper> _mockMapper;
+        private const string Email = "test@example.com";
+        private const string Password = "testPassword";
 
+        private readonly AuthService _authService;
+        private readonly Mock<IUserManagerDecorator> _mockUserManager;
+        private readonly Mock<IJwtService> _mockJwtService;
+        private readonly IMapper _mapper;
         public AuthServiceTests()
         {
-            _mockUserManager = new Mock<UserManager<ApplicationUser>>(Mock.Of<IUserStore<ApplicationUser>>());
+            _mockUserManager = new Mock<IUserManagerDecorator>();
 
             _mockJwtService = new Mock<IJwtService>();
-            _mockMapper = new Mock<IMapper>();
+            _mapper = new Mapper(
+                new MapperConfiguration(
+                    x => x.AddProfile(new AuthMappingProfile())
+                    )
+                );
 
-            _authService = new AuthService(_mockUserManager.Object, _mockMapper.Object, _mockJwtService.Object);
+            _authService = new AuthService(_mockUserManager.Object, _mapper, _mockJwtService.Object);
         }
 
         [Fact]
-        public async Task Register_ValidUser_ReturnsUserDto()
+        public async Task ItShouldReturnUserDtoForRegisteredUser_WhenRegisteredSuccessfully()
         {
             var userRegisterDTO = new UserRegisterDTO
             {
-                Email = "test@example.com",
-                Password = "testPassword",
+                Email = Email,
+                Password = Password,
+            };
+            
+            var expectedUser = new ApplicationUser
+            {
+                Email = Email
             };
 
-            _mockUserManager.Setup(m => m.FindByEmailAsync(userRegisterDTO.Email))
-                   .ReturnsAsync((ApplicationUser)null);
+            _mockUserManager
+                .Setup(m => m.FindByEmailAsync(Email))
+                .ReturnsAsync(null as ApplicationUser);
 
-            var user = new ApplicationUser();
-            _mockMapper.Setup(m => m.Map<ApplicationUser>(userRegisterDTO))
-                       .Returns(user);
-
-            var identityResult = IdentityResult.Success;
-            _mockUserManager.Setup(m => m.CreateAsync(user, userRegisterDTO.Password))
-                            .ReturnsAsync(identityResult);
-
-            var userDTO = new UserDTO(); 
-            _mockMapper.Setup(m => m.Map<UserDTO>(user))
-                       .Returns(userDTO);
+            _mockUserManager
+                .Setup(m => m.CreateAsync(
+                    It.Is<ApplicationUser>(x => x.Email == Email), Password))
+                .ReturnsAsync(IdentityResult.Success);
 
             var result = await _authService.Register(userRegisterDTO);
 
-            Assert.NotNull(result);
-            Assert.Equal(userDTO, result);
+            result.Should().BeOfType<UserDTO>();
+            result.Email.Should().Be(expectedUser.Email);
         }
 
         [Fact]
-        public async Task Login_ValidCredentials_ReturnsJwtToken()
+        public async Task ItShouldReturnJwtToken_WhenUserSuccessfullyLoggedIn()
         {
             var userLoginDTO = new UserLoginDTO
             {
-                Email = "test@example.com",
-                Password = "testPassword",
+                Email = Email,
+                Password = Password,
             };
 
-            var user = new ApplicationUser
-            {
-                Email = userLoginDTO.Email,
-            };
+            var expectedUser = new ApplicationUser { Email = Email,};
 
-            _mockUserManager.Setup(m => m.FindByEmailAsync(userLoginDTO.Email))
-                .Returns(Task.FromResult(user));
+            _mockUserManager
+                .Setup(m => m.FindByEmailAsync(Email))
+                .ReturnsAsync(expectedUser);
 
-            _mockUserManager.Setup(m => m.CheckPasswordAsync(user, userLoginDTO.Password))
-                .Returns(Task.FromResult(true));
+            _mockUserManager
+                .Setup(m => m.CheckPasswordAsync(expectedUser, Password))
+                .ReturnsAsync(true);
 
-            var expectedToken = "generated_jwt_token";
-            _mockJwtService.Setup(m => m.GenerateJwtToken(user)).Returns(expectedToken);
+            const string expectedToken = "generated_jwt_token";
+            _mockJwtService
+                .Setup(m => m.GenerateJwtToken(expectedUser))
+                .Returns(expectedToken);
 
             var result = await _authService.Login(userLoginDTO);
 
-
-            Assert.NotNull(result);
-            Assert.Equal(expectedToken, result);
+            result.Should().Be(expectedToken);
         }
     }
 }
