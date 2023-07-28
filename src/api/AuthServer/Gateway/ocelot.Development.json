@@ -2,9 +2,16 @@
   "Routes": [
     {
       "ServiceName": "AuctionService",
-      "DownstreamPathTemplate": "/api/auction",
+      "DownstreamPathTemplate": "/api/auctions/{everything}",
       "DownstreamScheme": "https",
-      "UpstreamPathTemplate": "/auction",
+      "UpstreamPathTemplate": "/api/auctions/{everything}",
+      "UpstreamHttpMethod": []
+    },
+    {
+      "ServiceName": "AuctionService",
+      "DownstreamPathTemplate": "/api/auctions",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/api/auctions",
       "UpstreamHttpMethod": []
     },
     {
@@ -23,9 +30,9 @@
     },
     {
       "ServiceName": "IdentityServer",
-      "DownstreamPathTemplate": "/{url}",
+      "DownstreamPathTemplate": "/api/auth/{everything}",
       "DownstreamScheme": "https",
-      "UpstreamPathTemplate": "/{url}",
+      "UpstreamPathTemplate": "/api/auth/{everything}",
       "UpstreamHttpMethod": []
     }
   ],
