@@ -22,12 +22,24 @@ public sealed class AuctionRepository : IAuctionRepository
 
         try
         {
-            return await _context.SaveChangesAsync() > 0;
+            return await Commit();
         }
         catch (DbUpdateException ex)
         {
             _logger.LogError(ex.Message, ex);
             return false;
         }
+    }
+
+    public async Task<Auction> GetAuctionById(Guid id)
+    {
+        return await _context.Auctions
+            .Include(x => x.AuctionItems)
+            .SingleOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task<bool> Commit()
+    {
+        return await _context.SaveChangesAsync() > 0;
     }
 }

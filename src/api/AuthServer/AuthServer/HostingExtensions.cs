@@ -23,7 +23,17 @@ internal static class HostingExtensions
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         var migrationAssembly = typeof(Config).Assembly.GetName().Name;
-        
+
+        builder.Services.AddCors(x =>
+        {
+            x.AddPolicy("DefaultPolicy",
+                options => options
+                    .SetIsOriginAllowed(_ => true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+        });
+
         builder.Services.AddRazorPages();
         builder.Services.AddDiscovery(configuration);
 

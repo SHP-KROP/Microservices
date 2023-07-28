@@ -1,7 +1,10 @@
 using AuctionService.Application.Models.Auction.Validators;
+using AuctionService.Application.Services.Abstractions;
 using AuctionService.Extensions;
 using AuctionService.Hubs;
+using AuctionService.Infrastructure;
 using Authentication.Extensions;
+using Azure.Storage.Blobs;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Serilog;
@@ -28,6 +31,9 @@ services.AddControllers();
 
 services.AddPersistenceServices(builder.Configuration);
 services.AddBusinessLogicServices();
+services.AddSingleton(_ => new BlobServiceClient(
+        builder.Configuration.GetValue<string>("BlobServiceAccountConnectionString")));
+services.AddScoped<IBlobService, BlobService>();
 
 services.AddMvc();
 services.AddFluentValidationAutoValidation();

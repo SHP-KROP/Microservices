@@ -1,4 +1,5 @@
 using AuctionService.Application.Models.Auction;
+using AuctionService.Application.Services.Abstractions;
 using AuctionService.Core.Entities;
 using AuctionService.Core.Repositories;
 using Microsoft.Extensions.Logging;
@@ -15,7 +16,10 @@ public class AuctionServiceTests
     public AuctionServiceTests()
     {
         _auctionRepository = Substitute.For<IAuctionRepository>();
-        _sut = new(_auctionRepository, Substitute.For<ILogger<Services.AuctionService>>());
+        _sut = new(
+            _auctionRepository, 
+            Substitute.For<ILogger<Services.AuctionService>>(), 
+            Substitute.For<IBlobService>());
     }
 
     [Fact]

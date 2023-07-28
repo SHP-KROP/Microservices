@@ -1,4 +1,5 @@
 using AuctionService.Application.Models.Auction;
+using AuctionService.Application.Models.AuctionItem;
 using AuctionService.Application.Services.Abstractions;
 using AuctionService.Core.Entities;
 using AuctionService.Core.Repositories;
@@ -11,11 +12,13 @@ public sealed class AuctionService : IAuctionService
 {
     private readonly IAuctionRepository _auctionRepository;
     private readonly ILogger<AuctionService> _logger;
+    private readonly IBlobService _blobService;
 
-    public AuctionService(IAuctionRepository auctionRepository, ILogger<AuctionService> logger)
+    public AuctionService(IAuctionRepository auctionRepository, ILogger<AuctionService> logger, IBlobService blobService)
     {
         _auctionRepository = auctionRepository;
         _logger = logger;
+        _blobService = blobService;
     }
     
     public async Task<Result<AuctionViewModel>> Create(AuctionCreateModel createModel, string userId)
@@ -38,5 +41,41 @@ public sealed class AuctionService : IAuctionService
         _logger.LogWarning("Failed to create auction with Id {@AuctionId}", auction.Id);
         
         return Result.Fail($"Unable to create an auction with Id {auction.Id}");
+    }
+
+    public async Task<Result<AuctionItemViewModel>> AddItem(Guid auctionId, AuctionItemCreateModel createModel, string userId)
+    {
+        var auction = await _auctionRepository.GetAuctionById(auctionId);
+
+        if (auction is null)
+        {
+            return Result.Fail($"There is no auction with id {auctionId}");
+        }
+
+        if (auction.UserId != Guid.Parse(userId))
+        {
+            return Result.Fail($"User with id {userId} is not owner of this auction");
+        }
+
+        var fileTasks = createModel.Photos
+            .Select(x => _blobService.UploadFile(x, $"{auctionId}/{Guid.NewGuid()}" + Path.GetExtension(x.FileName)));
+        
+        var photos = (await Task.WhenAll(fileTasks)).Select(x => new AuctionItemPhoto
+        {
+            Name = x.fileName,
+            PhotoUrl = x.url.ToString()
+        }).ToList();
+
+        AuctionItem auctionItem = createModel;
+        auctionItem.Photos = photos;
+
+        auction.AuctionItems.Add(auctionItem);
+
+        if (!await _auctionRepository.Commit())
+        {
+            return Result.Fail("Unable to save changes while adding auction item");
+        }
+
+        return Result.Ok((AuctionItemViewModel)auctionItem);
     }
 }

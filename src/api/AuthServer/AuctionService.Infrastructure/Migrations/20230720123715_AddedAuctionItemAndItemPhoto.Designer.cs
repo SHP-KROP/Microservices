@@ -4,6 +4,7 @@ using AuctionService.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuctionService.Infrastructure.Migrations
 {
     [DbContext(typeof(AuctionDbContext))]
-    partial class AuctionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230720123715_AddedAuctionItemAndItemPhoto")]
+    partial class AddedAuctionItemAndItemPhoto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,36 +127,6 @@ namespace AuctionService.Infrastructure.Migrations
                     b.ToTable("AuctionItemPhoto", "auction");
                 });
 
-            modelBuilder.Entity("AuctionService.Core.Entities.Bid", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("ActualPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("AuctionItemId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("Date")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuctionItemId");
-
-                    b.ToTable("Bid", "auction");
-                });
-
             modelBuilder.Entity("AuctionService.Core.Entities.AuctionItem", b =>
                 {
                     b.HasOne("AuctionService.Core.Entities.Auction", null)
@@ -168,15 +141,6 @@ namespace AuctionService.Infrastructure.Migrations
                         .HasForeignKey("AuctionItemId");
                 });
 
-            modelBuilder.Entity("AuctionService.Core.Entities.Bid", b =>
-                {
-                    b.HasOne("AuctionService.Core.Entities.AuctionItem", null)
-                        .WithMany("Bids")
-                        .HasForeignKey("AuctionItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("AuctionService.Core.Entities.Auction", b =>
                 {
                     b.Navigation("AuctionItems");
@@ -184,8 +148,6 @@ namespace AuctionService.Infrastructure.Migrations
 
             modelBuilder.Entity("AuctionService.Core.Entities.AuctionItem", b =>
                 {
-                    b.Navigation("Bids");
-
                     b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618

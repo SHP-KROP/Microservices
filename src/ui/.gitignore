@@ -24,5 +24,4 @@ dist-ssr
 *.sw?
 
 # Ignored files
-package-lock.json
 .env

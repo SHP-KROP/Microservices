@@ -17,4 +17,6 @@ public class Auction
     public DateTimeOffset? EndTime { get; set; }
 
     public AuctionType AuctionType { get; set; }
+
+    public ICollection<AuctionItem> AuctionItems { get; set; }
 }
