@@ -19,4 +19,6 @@ public class Auction
     public AuctionType AuctionType { get; set; }
 
     public ICollection<AuctionItem> AuctionItems { get; set; }
+
+    public AuctionItem? GetFirstItem() => AuctionItems?.MinBy(x => x.Name);
 }
