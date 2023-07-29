@@ -1,10 +1,15 @@
 using AuctionService.Application.Models.Auction.Validators;
 using AuctionService.Extensions;
 using AuctionService.Hubs;
+using AuctionService.Infrastructure.Persistence;
 using Authentication.Extensions;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Serilog.Events;
 using ServiceRegistration.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,9 +40,12 @@ services.AddFluentValidationAutoValidation();
 services.AddValidatorsFromAssembly(typeof(AuctionCreateModelValidator).Assembly);
 
 builder.Host.UseSerilog((context, configuration) 
-    => configuration.ReadFrom.Configuration(context.Configuration));
+    => configuration.ReadFrom.Configuration(context.Configuration)
+        .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information));
 
 var app = builder.Build();
+
+app.Services.CreateScope().ServiceProvider.GetRequiredService<AuctionDbContext>().Database.Migrate();
 
 app.UseCors("DefaultPolicy");
 app.UseSerilogRequestLogging();

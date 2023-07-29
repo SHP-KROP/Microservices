@@ -1,5 +1,5 @@
 using AuctionService.Application.Options;
-using AuctionService.Core.Repositories;
+using AuctionService.Application.Services.Abstractions.Repositories;
 using AuctionService.Infrastructure.Messaging;
 using AuctionService.Infrastructure.Messaging.Contracts;
 using Microsoft.Extensions.Options;

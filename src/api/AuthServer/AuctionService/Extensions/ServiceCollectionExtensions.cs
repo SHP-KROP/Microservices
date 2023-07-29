@@ -38,7 +38,6 @@ public static class ServiceCollectionExtensions
         @this.AddHostedService<AuctionHub>();
         
         @this.Configure<AuctionMonitorOptions>(configuration.GetSection(AuctionMonitorOptions.Section));
-
         
         return @this.Scan(x => x.FromAssemblyOf<IAuctionService>()
             .AddClasses(x => x.InExactNamespaceOf<Application.Services.AuctionService>())

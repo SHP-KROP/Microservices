@@ -8,7 +8,7 @@ public sealed class AuctionDbContext : DbContext
 {
     public AuctionDbContext(DbContextOptions<AuctionDbContext> options) : base(options)
     {
-        Database.Migrate();
+        
     }
 
     public DbSet<Auction> Auctions { get; set; }

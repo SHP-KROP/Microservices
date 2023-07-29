@@ -1,7 +1,7 @@
 using AuctionService.Application.Models.Auction;
 using AuctionService.Application.Services.Abstractions;
+using AuctionService.Application.Services.Abstractions.Repositories;
 using AuctionService.Core.Entities;
-using AuctionService.Core.Repositories;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 

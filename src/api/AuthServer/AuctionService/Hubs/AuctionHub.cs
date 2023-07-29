@@ -62,7 +62,7 @@ internal sealed class AuctionHub : Hub, IHostedService
             try
             {
                 var auctionIds = consumer.ConsumeDeserializedMessage<ReadyToStartAuctionsMessage>(cts);
-                _logger.LogInformation("Consumed {@ReadyToStartAuctionMessage}", auctionIds);
+                _logger.LogTrace("Consumed {@ReadyToStartAuctionMessage}", auctionIds);
 
                 var auctionsToBeStarted = (await _auctionHost.GetActiveAuctions()).Keys.Except(auctionIds);
 
