@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace AuctionService.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedDbSetsToContext : Migration
+    public partial class AddedDbSetsToContext_AddedDescIndexOnAuctionStartTime_AuctionStarTimeNonNullable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,6 +77,17 @@ namespace AuctionService.Infrastructure.Migrations
                 table: "AuctionItems",
                 newName: "IX_AuctionItems_AuctionId");
 
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "StartTime",
+                schema: "auction",
+                table: "Auctions",
+                type: "datetimeoffset",
+                nullable: false,
+                defaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                oldClrType: typeof(DateTimeOffset),
+                oldType: "datetimeoffset",
+                oldNullable: true);
+
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Bids",
                 schema: "auction",
@@ -93,6 +105,13 @@ namespace AuctionService.Infrastructure.Migrations
                 schema: "auction",
                 table: "AuctionItems",
                 column: "Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Auctions_StartTime",
+                schema: "auction",
+                table: "Auctions",
+                column: "StartTime",
+                descending: new bool[0]);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_AuctionItemPhotos_AuctionItems_AuctionItemId",
@@ -140,6 +159,11 @@ namespace AuctionService.Infrastructure.Migrations
                 name: "FK_Bids_AuctionItems_AuctionItemId",
                 schema: "auction",
                 table: "Bids");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Auctions_StartTime",
+                schema: "auction",
+                table: "Auctions");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Bids",
@@ -191,6 +215,15 @@ namespace AuctionService.Infrastructure.Migrations
                 schema: "auction",
                 table: "AuctionItemPhoto",
                 newName: "IX_AuctionItemPhoto_AuctionItemId");
+
+            migrationBuilder.AlterColumn<DateTimeOffset>(
+                name: "StartTime",
+                schema: "auction",
+                table: "Auctions",
+                type: "datetimeoffset",
+                nullable: true,
+                oldClrType: typeof(DateTimeOffset),
+                oldType: "datetimeoffset");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Bid",

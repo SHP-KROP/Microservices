@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuctionService.Infrastructure.Migrations
 {
     [DbContext(typeof(AuctionDbContext))]
-    [Migration("20230729171537_AddedDbSetsToContext")]
-    partial class AddedDbSetsToContext
+    [Migration("20230729175854_AddedDbSetsToContext_AddedDescIndexOnAuctionStartTime_AuctionStarTimeNonNullable")]
+    partial class AddedDbSetsToContext_AddedDescIndexOnAuctionStartTime_AuctionStarTimeNonNullable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,8 @@ namespace AuctionService.Infrastructure.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.HasIndex("StartTime");
+                    b.HasIndex("StartTime")
+                        .IsDescending();
 
                     b.ToTable("Auctions", "auction");
                 });
