@@ -13,7 +13,7 @@ public class AuctionConfiguration : IEntityTypeConfiguration<Auction>
         builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
         builder.HasIndex(x => x.Name).IsUnique();
         
-        builder.HasIndex(x => x.StartTime).IsDescending(false);
+        builder.HasIndex(x => x.StartTime).IsDescending();
 
         builder.Property(x => x.UserId).IsRequired();
 

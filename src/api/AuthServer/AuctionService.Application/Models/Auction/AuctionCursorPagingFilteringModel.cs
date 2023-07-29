@@ -9,7 +9,7 @@ public sealed class AuctionCursorPagingFilteringModel
     private const int MinPageSize = 1;
 
     private AuctionCursorPagingFilteringModel(int PageSize,
-        DateTimeOffset Cursor,
+        DateTimeOffset? Cursor,
         Expression<Func<Core.Entities.Auction, bool>> Filter = null)
     {
         this.PageSize = PageSize;

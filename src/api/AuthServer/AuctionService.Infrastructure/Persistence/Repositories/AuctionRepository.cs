@@ -20,7 +20,7 @@ public sealed class AuctionRepository : IAuctionRepository
 
     public async Task<CursorPaginatedAuctions> GetFilteredPagedAuctions(AuctionCursorPagingFilteringModel filteredPagingModel)
     {
-        var auctions = _context.Auctions.OrderBy(x => x.StartTime).AsQueryable();
+        var auctions = _context.Auctions.OrderByDescending(x => x.StartTime).AsQueryable();
 
         if (filteredPagingModel.Filter is not null)
         {
@@ -29,7 +29,7 @@ public sealed class AuctionRepository : IAuctionRepository
 
         if (filteredPagingModel.Cursor is not null)
         {
-            auctions = auctions.Where(x => x.StartTime > filteredPagingModel.Cursor);
+            auctions = auctions.Where(x => x.StartTime < filteredPagingModel.Cursor);
         }
 
         var auctionsResult = await auctions.Take(filteredPagingModel.PageSize + 1).ToListAsync();
@@ -38,12 +38,12 @@ public sealed class AuctionRepository : IAuctionRepository
         
         if (auctionsResult.Count == filteredPagingModel.PageSize + 1)
         {
-            nextCursor = CursorConverter.EncodeAuctionCursor(auctionsResult[^1].StartTime);
+            nextCursor = CursorConverter.EncodeAuctionCursor(auctionsResult[^2].StartTime);
         }
 
         var result = new CursorPaginatedAuctions
         {
-            Auctions = auctions,
+            Auctions = auctionsResult.Take(filteredPagingModel.PageSize),
             Cursor = nextCursor,
         };
 

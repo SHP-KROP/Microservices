@@ -21,7 +21,7 @@ public sealed class AuctionService : IAuctionService
         _blobService = blobService;
     }
 
-    public async Task<Result<CursorPaginatedAuctions>> GetFilteredPagedAuctions(int pageSize, string cursor, bool forward = true)
+    public async Task<Result<CursorPaginatedAuctions>> GetFilteredPagedAuctions(int pageSize, string cursor)
     {
         try
         {

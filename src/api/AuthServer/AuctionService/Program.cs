@@ -47,6 +47,13 @@ var app = builder.Build();
 
 app.Services.CreateScope().ServiceProvider.GetRequiredService<AuctionDbContext>().Database.Migrate();
 
+if (app.Environment.IsDevelopment() && args.Contains("/seed"))
+{
+    await app.SeedData();
+    
+    return;
+}
+
 app.UseCors("DefaultPolicy");
 app.UseSerilogRequestLogging();
 

@@ -22,6 +22,7 @@ public class AuctionsController : Controller
     }
     
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAuctions([FromQuery] GetAuctionsRequest request)
     {
         var result = await _auctionService.GetFilteredPagedAuctions(

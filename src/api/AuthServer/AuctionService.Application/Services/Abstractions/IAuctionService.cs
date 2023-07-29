@@ -9,5 +9,6 @@ public interface IAuctionService
     public Task<Result<AuctionViewModel>> Create(AuctionCreateModel createModel, string userId);
     
     Task<Result<AuctionItemViewModel>> AddItem(Guid auctionId, AuctionItemCreateModel createModel, string userId);
-    Task<Result<CursorPaginatedAuctions>> GetFilteredPagedAuctions(int pageSize, string cursor, bool forward = true);
+    
+    Task<Result<CursorPaginatedAuctions>> GetFilteredPagedAuctions(int pageSize, string cursor);
 }

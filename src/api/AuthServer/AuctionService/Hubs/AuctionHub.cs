@@ -88,7 +88,9 @@ internal sealed class AuctionHub : Hub, IHostedService
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        return Consume();
+        Task.Run(async () => await Consume(), cancellationToken);
+        
+        return Task.CompletedTask;
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)

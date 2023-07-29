@@ -5,7 +5,14 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:5001"
+      "applicationUrl": "https://localhost:7130"
+    },
+    "Seed Auction Data": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "commandLineArgs": "/seed"
     }
   }
 }
