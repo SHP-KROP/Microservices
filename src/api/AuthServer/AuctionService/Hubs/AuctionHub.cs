@@ -62,7 +62,7 @@ internal sealed class AuctionHub : Hub, IHostedService
             try
             {
                 var auctionIds = consumer.ConsumeDeserializedMessage<ReadyToStartAuctionsMessage>(cts);
-                _logger.LogInformation("Consumed {@ReadyToStartAuctionMessage}", auctionIds);
+                _logger.LogTrace("Consumed {@ReadyToStartAuctionMessage}", auctionIds);
 
                 var auctionsToBeStarted = (await _auctionHost.GetActiveAuctions()).Keys.Except(auctionIds);
 
@@ -88,7 +88,9 @@ internal sealed class AuctionHub : Hub, IHostedService
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        return Consume();
+        Task.Run(async () => await Consume(), cancellationToken);
+        
+        return Task.CompletedTask;
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)

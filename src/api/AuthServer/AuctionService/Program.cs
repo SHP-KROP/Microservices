@@ -1,9 +1,11 @@
 using AuctionService.Application.Models.Auction.Validators;
 using AuctionService.Extensions;
 using AuctionService.Hubs;
+using AuctionService.Infrastructure.Persistence;
 using Authentication.Extensions;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using ServiceRegistration.Extensions;
 
@@ -38,6 +40,14 @@ builder.Host.UseSerilog((context, configuration)
     => configuration.ReadFrom.Configuration(context.Configuration));
 
 var app = builder.Build();
+
+app.Services.CreateScope().ServiceProvider.GetRequiredService<AuctionDbContext>().Database.Migrate();
+
+if (app.Environment.IsDevelopment() && args.Contains("/seed"))
+{
+    await app.SeedData();
+    return;
+}
 
 app.UseCors("DefaultPolicy");
 app.UseSerilogRequestLogging();

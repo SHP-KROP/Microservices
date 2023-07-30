@@ -2,13 +2,6 @@
   "Routes": [
     {
       "ServiceName": "AuctionService",
-      "DownstreamPathTemplate": "/api/auctions/{everything}",
-      "DownstreamScheme": "https",
-      "UpstreamPathTemplate": "/api/auctions/{everything}",
-      "UpstreamHttpMethod": []
-    },
-    {
-      "ServiceName": "AuctionService",
       "DownstreamPathTemplate": "/api/auctions",
       "DownstreamScheme": "https",
       "UpstreamPathTemplate": "/api/auctions",
@@ -16,16 +9,16 @@
     },
     {
       "ServiceName": "AuctionService",
-      "DownstreamPathTemplate": "/messaging-auction",
-      "DownstreamScheme": "wss",
-      "UpstreamPathTemplate": "/messaging-auction",
+      "DownstreamPathTemplate": "/api/auctions/{everything}",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/api/auctions/{everything}",
       "UpstreamHttpMethod": []
     },
     {
       "ServiceName": "AuctionService",
-      "DownstreamPathTemplate": "/messaging-auction/{path}",
+      "DownstreamPathTemplate": "/messaging-auction/{everything}",
       "DownstreamScheme": "wss",
-      "UpstreamPathTemplate": "/messaging-auction/{path}",
+      "UpstreamPathTemplate": "/messaging-auction/{everything}",
       "UpstreamHttpMethod": []
     },
     {

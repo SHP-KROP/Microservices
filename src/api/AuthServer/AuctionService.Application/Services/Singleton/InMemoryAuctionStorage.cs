@@ -20,7 +20,7 @@ public class InMemoryAuctionStorage : IAuctionStorage
 
     public async Task<Dictionary<Guid, Auction>> GetAuctions()
     {
-        _logger.LogInformation("Getting auctions from in-memory store");
+        _logger.LogTrace("Getting auctions from in-memory store");
         return _cache.Get<Dictionary<Guid, Auction>>(AuctionsCacheKey) ?? new Dictionary<Guid, Auction>();
     }
 

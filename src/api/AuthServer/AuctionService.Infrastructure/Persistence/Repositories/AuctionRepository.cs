@@ -1,6 +1,8 @@
-using System.Linq.Expressions;
+using AuctionService.Application.Helpers;
+using AuctionService.Application.Models.Auction;
+using AuctionService.Application.Services.Abstractions.Repositories;
+using AuctionService.Application.Services.FilteringStrategies.Auctions;
 using AuctionService.Core.Entities;
-using AuctionService.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -17,6 +19,39 @@ public sealed class AuctionRepository : IAuctionRepository
         _logger = logger;
     }
 
+    public async Task<CursorPaginatedAuctions> GetFilteredPagedAuctions(AuctionCursorPagingFilteringModel filteredPagingModel)
+    {
+        var auctions = _context.Auctions.OrderByDescending(x => x.StartTime).AsQueryable();
+
+        if (filteredPagingModel.Filter is not null)
+        {
+            var filteringStrategy = new AuctionFilteringStrategy(filteredPagingModel.Filter);
+            auctions = filteringStrategy.ApplyFilter(auctions);
+        }
+
+        if (filteredPagingModel.Cursor is not null)
+        {
+            auctions = auctions.Where(x => x.StartTime < filteredPagingModel.Cursor);
+        }
+
+        var auctionsResult = await auctions.Take(filteredPagingModel.PageSize + 1).ToListAsync();
+
+        string nextCursor = null;
+        
+        if (auctionsResult.Count == filteredPagingModel.PageSize + 1)
+        {
+            nextCursor = CursorConverter.EncodeAuctionCursor(auctionsResult[^2].StartTime);
+        }
+
+        var result = new CursorPaginatedAuctions
+        {
+            Auctions = auctionsResult.Take(filteredPagingModel.PageSize),
+            Cursor = nextCursor,
+        };
+
+        return result;
+    }
+    
     public async Task<IEnumerable<Auction>> GetAuctionsByIds(IEnumerable<Guid> ids)
     {
         var auctions = _context.Auctions

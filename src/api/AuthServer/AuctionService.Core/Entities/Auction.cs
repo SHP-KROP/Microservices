@@ -12,7 +12,7 @@ public class Auction
 
     public string Description { get; set; }
     
-    public DateTimeOffset? StartTime { get; set; }
+    public DateTimeOffset StartTime { get; set; }
 
     public DateTimeOffset? EndTime { get; set; }
 

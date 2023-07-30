@@ -3,6 +3,7 @@ using AuctionService.Application.Models.Auction;
 using AuctionService.Application.Models.AuctionItem;
 using AuctionService.Application.Services.Abstractions;
 using AuctionService.Extensions;
+using AuctionService.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,18 @@ public class AuctionsController : Controller
     public AuctionsController(IAuctionService auctionService)
     {
         _auctionService = auctionService;
+    }
+    
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetAuctions([FromQuery] GetAuctionsRequest request)
+    {
+        var result = await _auctionService.GetFilteredPagedAuctions(
+            request.PageSize,
+            request.Cursor,
+            request);
+        
+        return result.ToResponse();
     }
 
     [HttpPost]

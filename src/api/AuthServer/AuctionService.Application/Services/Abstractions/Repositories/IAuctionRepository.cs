@@ -1,6 +1,7 @@
+using AuctionService.Application.Models.Auction;
 using AuctionService.Core.Entities;
 
-namespace AuctionService.Core.Repositories;
+namespace AuctionService.Application.Services.Abstractions.Repositories;
 
 public interface IAuctionRepository
 { 
@@ -12,5 +13,7 @@ public interface IAuctionRepository
 
     Task<IEnumerable<Guid>> GetReadyToStartAuctionsSince(DateTimeOffset timeFrom);
 
+    Task<CursorPaginatedAuctions> GetFilteredPagedAuctions(AuctionCursorPagingFilteringModel filteredPagingModel);
+    
     Task<bool> Commit();
 }

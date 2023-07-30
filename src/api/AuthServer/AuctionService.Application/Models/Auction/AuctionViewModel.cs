@@ -1,5 +1,3 @@
-using AuctionService.Core.Enums;
-
 namespace AuctionService.Application.Models.Auction;
 
 public sealed class AuctionViewModel
@@ -12,21 +10,24 @@ public sealed class AuctionViewModel
 
     public string Description { get; init; }
 
-    public DateTimeOffset? StartTime { get; init; }
+    public DateTimeOffset StartTime { get; init; }
 
     public DateTimeOffset? EndTime { get; init; }
 
-    public AuctionType AuctionType { get; init; }
+    public string AuctionType { get; init; }
+    
+    // TODO: To be implemented in future stories
+    public string PhotoUrl { get; init; } = "https://some-photo-url-placeholder";
 
     public static implicit operator AuctionViewModel(Core.Entities.Auction auction) =>
         new()
         {
             Id = auction.Id,
             UserId = auction.UserId,
-            AuctionType = auction.AuctionType,
+            AuctionType = auction.AuctionType.ToString(),
             Name = auction.Name,
             Description = auction.Description,
             EndTime = auction.EndTime,
-            StartTime = auction.StartTime
+            StartTime = auction.StartTime,
         };
 }
