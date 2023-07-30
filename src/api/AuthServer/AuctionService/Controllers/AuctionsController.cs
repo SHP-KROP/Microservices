@@ -27,7 +27,8 @@ public class AuctionsController : Controller
     {
         var result = await _auctionService.GetFilteredPagedAuctions(
             request.PageSize,
-            request.Cursor);
+            request.Cursor,
+            request);
         
         return result.ToResponse();
     }

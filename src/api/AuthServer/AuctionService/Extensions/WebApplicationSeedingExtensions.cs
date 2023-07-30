@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AuctionService.Extensions;
 
-public static class WebApplicationExtensions
+public static class WebApplicationSeedingExtensions
 {
     internal static async Task SeedData(this WebApplication @this)
     {

@@ -1,6 +1,7 @@
 using AuctionService.Application.Helpers;
 using AuctionService.Application.Models.Auction;
 using AuctionService.Application.Services.Abstractions.Repositories;
+using AuctionService.Application.Services.FilteringStrategies.Auctions;
 using AuctionService.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -24,7 +25,8 @@ public sealed class AuctionRepository : IAuctionRepository
 
         if (filteredPagingModel.Filter is not null)
         {
-            auctions = auctions.Where(filteredPagingModel.Filter);
+            var filteringStrategy = new AuctionFilteringStrategy(filteredPagingModel.Filter);
+            auctions = filteringStrategy.ApplyFilter(auctions);
         }
 
         if (filteredPagingModel.Cursor is not null)

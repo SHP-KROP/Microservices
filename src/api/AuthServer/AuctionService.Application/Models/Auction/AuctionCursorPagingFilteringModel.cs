@@ -10,7 +10,7 @@ public sealed class AuctionCursorPagingFilteringModel
 
     private AuctionCursorPagingFilteringModel(int PageSize,
         DateTimeOffset? Cursor,
-        Expression<Func<Core.Entities.Auction, bool>> Filter = null)
+        AuctionFilteringModel? Filter = null)
     {
         this.PageSize = PageSize;
         this.Cursor = Cursor;
@@ -21,9 +21,9 @@ public sealed class AuctionCursorPagingFilteringModel
     
     public DateTimeOffset? Cursor { get; }
     
-    public Expression<Func<Core.Entities.Auction, bool>> Filter { get; }
+    public AuctionFilteringModel? Filter { get; }
 
-    public static AuctionCursorPagingFilteringModel Create(int pageSize, string encodedCursor)
+    public static AuctionCursorPagingFilteringModel Create(int pageSize, string encodedCursor, AuctionFilteringModel? filter)
     {
         if (pageSize is < MinPageSize or > MaxPageSize)
         {
@@ -32,12 +32,12 @@ public sealed class AuctionCursorPagingFilteringModel
 
         var cursor = CursorConverter.DecodeAuctionCursor(encodedCursor);
 
-        return new(pageSize, cursor);
+        return new(pageSize, cursor, filter);
     }
 
     public void Deconstruct(out int PageSize, 
         out DateTimeOffset? Cursor, 
-        out Expression<Func<Core.Entities.Auction, bool>> Filter)
+        out AuctionFilteringModel? Filter)
     {
         PageSize = this.PageSize;
         Cursor = this.Cursor;

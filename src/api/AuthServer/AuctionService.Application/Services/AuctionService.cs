@@ -21,15 +21,16 @@ public sealed class AuctionService : IAuctionService
         _blobService = blobService;
     }
 
-    public async Task<Result<CursorPaginatedAuctions>> GetFilteredPagedAuctions(int pageSize, string cursor)
+    public async Task<Result<CursorPaginatedAuctionsViewModel>> GetFilteredPagedAuctions(
+        int pageSize, string cursor, AuctionFilteringModel filter)
     {
         try
         {
-            var filteringModel = AuctionCursorPagingFilteringModel.Create(pageSize, cursor);
+            var filteringModel = AuctionCursorPagingFilteringModel.Create(pageSize, cursor, filter);
             
             var result = await _auctionRepository.GetFilteredPagedAuctions(filteringModel);
 
-            return Result.Ok(result);
+            return Result.Ok((CursorPaginatedAuctionsViewModel)result);
         }
         catch (ArgumentOutOfRangeException ex)
         {
