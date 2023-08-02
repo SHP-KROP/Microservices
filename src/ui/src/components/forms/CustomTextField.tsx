@@ -32,8 +32,8 @@ function CustomTextField<T>({ field, formik }: ICustomTextFieldProps<T>) {
             helperText={helperText}
             className="w-full"
           >
-            {options?.map((x) => (
-              <MenuItem key={x} value={x}>
+            {Object.keys(options)?.map((x) => (
+              <MenuItem key={options[x]} value={options[x]}>
                 {x}
               </MenuItem>
             ))}

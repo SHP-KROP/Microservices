@@ -88,6 +88,11 @@ public sealed class AuctionRepository : IAuctionRepository
             return false;
         }
     }
+    
+    public async Task<bool> ExistsWithName(string name)
+    {
+        return await _context.Auctions.AnyAsync(x => x.Name == name);
+    }
 
     public async Task<Auction> GetAuctionById(Guid id)
     {

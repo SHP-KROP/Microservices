@@ -3,5 +3,5 @@ export interface IFieldConfig<T> {
   name: keyof T | string;
   label: string;
   type: string;
-  options?: string[];
+  options?: object[];
 }

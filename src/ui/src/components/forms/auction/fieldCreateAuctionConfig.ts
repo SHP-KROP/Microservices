@@ -26,7 +26,7 @@ const fieldCreateAuctionConfig: IFieldConfig<ICreateAuctionFormValues>[] = [
     name: 'auctionType',
     label: 'Auction type',
     type: 'select',
-    options: Object.keys(auctionTypes),
+    options: auctionTypes,
   },
 ];
 
