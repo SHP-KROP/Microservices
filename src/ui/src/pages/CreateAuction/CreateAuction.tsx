@@ -1,7 +1,8 @@
 import React from 'react';
+import CreateAuctionForm from './../../components/forms/auction/CreateAuctionForm';
 
 function CreateAuction() {
-  return <div>CreateAuction</div>;
+  return <CreateAuctionForm />;
 }
 
 export default CreateAuction;
