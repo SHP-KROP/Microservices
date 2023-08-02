@@ -1,3 +1,4 @@
+using AuctionService.ActionFilters;
 using AuctionService.Application.Models.Auction.Validators;
 using AuctionService.Extensions;
 using AuctionService.Hubs;
@@ -5,6 +6,7 @@ using AuctionService.Infrastructure.Persistence;
 using Authentication.Extensions;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using ServiceRegistration.Extensions;
@@ -26,13 +28,23 @@ services.AddIdentityServerAuthentication(builder.Configuration);
 
 services.AddDiscovery(builder.Configuration);
 services.AddSignalR();
-services.AddControllers();
+
+services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
+
+services.AddControllers(x =>
+{
+    x.Filters.Add<ValidationMessageFormatterAttribute>();
+});
 
 services.AddInfrastructureServices(builder.Configuration);
 services.AddPersistenceServices(builder.Configuration);
 services.AddBusinessLogicServices(builder.Configuration);
 
 services.AddMvc();
+
 services.AddFluentValidationAutoValidation();
 services.AddValidatorsFromAssembly(typeof(AuctionCreateModelValidator).Assembly);
 

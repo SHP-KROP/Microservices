@@ -16,4 +16,5 @@ public interface IAuctionRepository
     Task<CursorPaginatedAuctions> GetFilteredPagedAuctions(AuctionCursorPagingFilteringModel filteredPagingModel);
     
     Task<bool> Commit();
+    Task<bool> ExistsWithName(string name);
 }

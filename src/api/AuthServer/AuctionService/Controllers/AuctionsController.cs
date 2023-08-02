@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using AuctionService.ActionFilters;
 using AuctionService.Application.Models.Auction;
 using AuctionService.Application.Models.AuctionItem;
 using AuctionService.Application.Services.Abstractions;
@@ -12,6 +13,7 @@ namespace AuctionService.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
+[ValidationMessageFormatter]
 public class AuctionsController : Controller
 {
     private readonly IAuctionService _auctionService;

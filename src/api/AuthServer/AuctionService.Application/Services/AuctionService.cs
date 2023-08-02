@@ -44,6 +44,11 @@ public sealed class AuctionService : IAuctionService
 
         Auction auction = createModel;
         auction.UserId = Guid.Parse(userId);
+
+        if (await _auctionRepository.ExistsWithName(createModel.Name))
+        {
+            return Result.Fail($"Auction name {createModel.Name} should be unique");
+        }
         
         var result = await _auctionRepository.CreateAuction(auction);
 

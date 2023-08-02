@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { ILoginFormProps } from '../../interfaces/Forms/ILoginFormProps';
 import { ILoginFormValues } from '../../interfaces/Forms/ILoginFormValues';
-import GoogleIcon from '../../images/Google.svg';
-import validateLoginForm from '../../Validation/validateAuthForms/validationLoginForm';
-import CustomTextField from './CustomTextField';
+import validateLoginForm from '../../Validation/validateAuthForms/validateLoginForm';
+import CustomFormField from '../CustomFormField/CustomFormField';
 import fieldLoginConfig from './fieldLoginConfig';
 
 function LoginForm({
@@ -40,7 +39,7 @@ function LoginForm({
         Login
       </h1>
       {fieldLoginConfig.map((field) => (
-        <CustomTextField field={field} formik={formik} key={field.id} />
+        <CustomFormField field={field} formik={formik} key={field.id} />
       ))}
 
       <button
@@ -68,7 +67,6 @@ function LoginForm({
         onClick={handleGoogleSignIn}
         className="border border-emerald-600 rounded text-black text-center text-xs not-italic font-normal capitalize w-8/12 h-10 flex items-center justify-center gap-1"
       >
-        <img src={GoogleIcon} alt="Google Icon" className="w-6" />
         Continue with Google
       </button>
     </form>

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import GoogleIcon from '../../images/Google.svg';
 import fieldRegistrationConfig from './fieldRegistrationConfig';
 import { IRegisterFormValues } from '../../interfaces/Forms/IRegisterFormValues';
 import { IRegisterFormProps } from '../../interfaces/Forms/IRegisterFormProps';
-import validateRegisterForm from '../../Validation/validateAuthForms/validationRegisterForm';
-import CustomTextField from './CustomTextField';
+import validateRegisterForm from '../../Validation/validateAuthForms/validateRegisterForm';
+import CustomTextField from '../CustomFormField/CustomTextField';
 
 function RegistrationForm({
   onSubmit,
@@ -69,7 +68,6 @@ function RegistrationForm({
           onClick={handleGoogleSignIn}
           className="border border-emerald-600 rounded text-black text-center text-xs not-italic font-normal capitalize w-8/12 h-10 flex items-center justify-center gap-1"
         >
-          <img src={GoogleIcon} alt="Google Icon" className="w-6" />
           Continue with Google
         </button>
       </div>
