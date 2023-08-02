@@ -1,4 +1,4 @@
-import { IFieldConfig } from './CustomTextField';
+import { IFieldConfig } from './../../../interfaces/Forms/IFieldConfig';
 import { ICreateAuctionFormValues } from './../../../interfaces/Forms/CreateAuction/ICreateAuctionFormValues';
 import auctionTypes from '../../../domain/enums/SmartAuctionType';
 

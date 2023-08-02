@@ -18,7 +18,13 @@ function CreateAuction() {
     }
   }
 
-  return <CreateAuctionForm onSubmit={createAuction} />;
+  return (
+    <>
+      <div className="h-screen w-full bg-welcome bg-no-repeat bg-cover bg-center flex justify-center items-center">
+        <CreateAuctionForm onSubmit={createAuction} />
+      </div>
+    </>
+  );
 }
 
 export default CreateAuction;

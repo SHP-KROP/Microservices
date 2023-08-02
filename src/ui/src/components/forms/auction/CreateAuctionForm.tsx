@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { ICreateAuctionFormValues } from '../../../interfaces/Forms/CreateAuction/ICreateAuctionFormValues';
 import { ICreateAuctionFormProps } from '../../../interfaces/Forms/CreateAuction/ICreateAuctionFormProps';
-import CustomTextField from './../CustomTextField';
+import CustomFormField from '../../CustomFormField/CustomFormField';
 import fieldCreateAuctionConfig from './../auction/fieldCreateAuctionConfig';
 import { AuctionType } from '../../../domain/enums/AuctionType';
 import dayjs from 'dayjs';
@@ -18,6 +18,7 @@ function CreateAuctionForm({ onSubmit }: ICreateAuctionFormProps) {
     //validate: validateLoginForm,
     onSubmit: onSubmit,
   });
+  console.log(formik.values);
 
   return (
     <form
@@ -28,7 +29,7 @@ function CreateAuctionForm({ onSubmit }: ICreateAuctionFormProps) {
         Create auction
       </h1>
       {fieldCreateAuctionConfig.map((field) => (
-        <CustomTextField field={field} formik={formik} key={field.id} />
+        <CustomFormField field={field} formik={formik} key={field.id} />
       ))}
 
       <button

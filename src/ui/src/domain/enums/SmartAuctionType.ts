@@ -1,6 +1,6 @@
 import { AuctionType } from './AuctionType';
 
-const auctionTypes = {
+const auctionTypes: Record<string, AuctionType> = {
   English: AuctionType.English,
   Holland: AuctionType.Holland,
   'English closed': AuctionType.EnglishClosed,
