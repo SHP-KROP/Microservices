@@ -6,6 +6,7 @@ import CustomFormField from '../../CustomFormField/CustomFormField';
 import fieldCreateAuctionConfig from './../auction/fieldCreateAuctionConfig';
 import { AuctionType } from '../../../domain/enums/AuctionType';
 import dayjs from 'dayjs';
+import validateCreateAuction from '../../../Validation/validateCreateAuction/validateCreateAuction';
 
 function CreateAuctionForm({ onSubmit }: ICreateAuctionFormProps) {
   const formik = useFormik<ICreateAuctionFormValues>({
@@ -15,10 +16,9 @@ function CreateAuctionForm({ onSubmit }: ICreateAuctionFormProps) {
       startTime: dayjs(),
       auctionType: AuctionType.English,
     },
-    //validate: validateLoginForm,
+    validate: validateCreateAuction,
     onSubmit: onSubmit,
   });
-  console.log(formik.values);
 
   return (
     <form
