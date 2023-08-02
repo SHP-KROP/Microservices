@@ -1,6 +1,8 @@
+import { Dayjs } from 'dayjs';
+
 export interface ICreateAuctionFormValues {
   name: string;
   description: string;
-  startTime: Date;
+  startTime: Dayjs;
   auctionType: string;
 }

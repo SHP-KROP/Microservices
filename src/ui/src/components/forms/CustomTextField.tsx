@@ -2,6 +2,10 @@ import React from 'react';
 import { TextField } from '@material-ui/core';
 import { ICustomTextFieldProps } from '../../interfaces/Forms/ICustomTextFieldProps';
 import { MenuItem } from '@mui/material';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
 
 function CustomTextField<T>({ field, formik }: ICustomTextFieldProps<T>) {
   const { id, name, label, type, options } = field;
@@ -9,6 +13,7 @@ function CustomTextField<T>({ field, formik }: ICustomTextFieldProps<T>) {
     formik.touched[name as keyof T] && formik.errors[name as keyof T];
   const helperText = error ? String(error) : '';
 
+  // TODO: Refactor and create custom field per each type
   switch (type) {
     case 'select':
       return (
@@ -27,7 +32,7 @@ function CustomTextField<T>({ field, formik }: ICustomTextFieldProps<T>) {
             helperText={helperText}
             className="w-full"
           >
-            {options.map((x) => (
+            {options?.map((x) => (
               <MenuItem key={x} value={x}>
                 {x}
               </MenuItem>
@@ -38,19 +43,19 @@ function CustomTextField<T>({ field, formik }: ICustomTextFieldProps<T>) {
     case 'date':
       return (
         <div className="w-9/12">
-          <TextField
-            id={id}
-            name={name as string}
-            label={label}
-            type={type}
-            variant="outlined"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values[name as keyof T]}
-            error={Boolean(error)}
-            helperText={helperText}
-            className="w-full"
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateTimePicker
+              viewRenderers={{
+                hours: renderTimeViewClock,
+                minutes: renderTimeViewClock,
+                seconds: renderTimeViewClock,
+              }}
+              label={label}
+              onChange={formik.handleChange}
+              value={formik.values[name as keyof T]}
+              className="w-full"
+            />
+          </LocalizationProvider>
         </div>
       );
     default:
