@@ -3,6 +3,7 @@ import { ICustomTextFieldProps } from '../../interfaces/Forms/ICustomTextFieldPr
 import CustomSelectField from './CustomSelectField';
 import CustomDateTimeField from './CustomDateTimeField';
 import CustomTextField from './CustomTextField';
+import CustomFileInputField from './CustomFileInputField';
 
 function CustomFormField<T>({ field, formik }: ICustomTextFieldProps<T>) {
   const { type } = field;
@@ -14,6 +15,8 @@ function CustomFormField<T>({ field, formik }: ICustomTextFieldProps<T>) {
       return <CustomDateTimeField field={field} formik={formik} />;
     case 'text':
       return <CustomTextField field={field} formik={formik} />;
+    case 'file':
+      return <CustomFileInputField field={field} formik={formik} />;
     default:
       return <div>Wrong field type: {type}</div>;
   }

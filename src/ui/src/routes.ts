@@ -4,6 +4,7 @@ import AuthPage from './pages/AuthPage/AuthPage';
 import Home from './pages/Home/Home';
 import Welcome from './pages/Welcome/Welcome';
 import CreateAuction from './pages/CreateAuction/CreateAuction';
+import AddAuctionItemPage from './pages/AddAuctionItem/AddAuctionItemPage';
 
 const routes: IRoute[] = [
   {
@@ -33,6 +34,13 @@ const routes: IRoute[] = [
     path: '/auctions/new',
     enabled: true,
     component: CreateAuction,
+  },
+  {
+    key: 'add-auction-item',
+    title: 'AddAuctionItem',
+    path: '/auctions/:auctionId/new-item',
+    enabled: true,
+    component: AddAuctionItemPage,
   },
   {
     key: 'auction-messaging',
