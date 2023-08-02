@@ -11,8 +11,6 @@ function validateLoginForm(values: ILoginFormValues) {
     errors.password = 'Password is required';
   }
 
-  console.warn(errors);
-
   return errors;
 }
 export default validateLoginForm;
