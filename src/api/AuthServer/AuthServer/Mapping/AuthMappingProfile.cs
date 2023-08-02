@@ -3,9 +3,9 @@ using AutoMapper;
 
 namespace AuthServer.Mapping
 {
-    public class MappingProfile : Profile
+    public class AuthMappingProfile : Profile
     {
-        public MappingProfile()
+        public AuthMappingProfile()
         {
             CreateMap<UserRegisterDTO, ApplicationUser>();
 

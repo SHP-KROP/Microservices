@@ -1,8 +1,10 @@
 using System.Security.Claims;
+using AuctionService.ActionFilters;
 using AuctionService.Application.Models.Auction;
 using AuctionService.Application.Models.AuctionItem;
 using AuctionService.Application.Services.Abstractions;
 using AuctionService.Extensions;
+using AuctionService.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +13,7 @@ namespace AuctionService.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
+[ValidationMessageFormatter]
 public class AuctionsController : Controller
 {
     private readonly IAuctionService _auctionService;
@@ -18,6 +21,18 @@ public class AuctionsController : Controller
     public AuctionsController(IAuctionService auctionService)
     {
         _auctionService = auctionService;
+    }
+    
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetAuctions([FromQuery] GetAuctionsRequest request)
+    {
+        var result = await _auctionService.GetFilteredPagedAuctions(
+            request.PageSize,
+            request.Cursor,
+            request);
+        
+        return result.ToResponse();
     }
 
     [HttpPost]

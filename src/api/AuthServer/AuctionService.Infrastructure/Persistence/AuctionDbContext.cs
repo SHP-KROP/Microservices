@@ -8,10 +8,16 @@ public sealed class AuctionDbContext : DbContext
 {
     public AuctionDbContext(DbContextOptions<AuctionDbContext> options) : base(options)
     {
-        Database.Migrate();
+        
     }
 
     public DbSet<Auction> Auctions { get; set; }
+
+    public DbSet<AuctionItem> AuctionItems { get; set; }
+
+    public DbSet<AuctionItemPhoto> AuctionItemPhotos { get; set; }
+
+    public DbSet<Bid> Bids { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

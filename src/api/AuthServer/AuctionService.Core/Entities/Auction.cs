@@ -12,11 +12,13 @@ public class Auction
 
     public string Description { get; set; }
     
-    public DateTimeOffset? StartTime { get; set; }
+    public DateTimeOffset StartTime { get; set; }
 
     public DateTimeOffset? EndTime { get; set; }
 
     public AuctionType AuctionType { get; set; }
 
     public ICollection<AuctionItem> AuctionItems { get; set; }
+
+    public AuctionItem? GetFirstItem() => AuctionItems?.MinBy(x => x.Name);
 }

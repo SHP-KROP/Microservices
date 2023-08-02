@@ -10,7 +10,7 @@ public sealed class AuctionCreateModel
 
     public string Description { get; init; }
 
-    public DateTimeOffset? StartTime { get; init; } = null;
+    public DateTimeOffset StartTime { get; init; }
 
     public AuctionType AuctionType { get; init; }
 

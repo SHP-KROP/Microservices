@@ -8,5 +8,6 @@ public sealed class AuctionCreateModelValidator : AbstractValidator<AuctionCreat
     {
         RuleFor(x => x.Name).MaximumLength(100).MinimumLength(3);
         RuleFor(x => x.Description).MaximumLength(200);
+        RuleFor(x => x.StartTime).NotNull().NotEmpty();
     }
 }

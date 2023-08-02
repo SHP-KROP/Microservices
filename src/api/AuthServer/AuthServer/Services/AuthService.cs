@@ -8,11 +8,11 @@ namespace AuthServer.Services
 {
     public class AuthService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserManagerDecorator _userManager;
         private readonly IMapper _mapper;
         private readonly IJwtService _jwtService;
 
-        public AuthService(UserManager<ApplicationUser> userManager, IMapper mapper, IJwtService jwtService)
+        public AuthService(IUserManagerDecorator userManager, IMapper mapper, IJwtService jwtService)
         {
             _userManager = userManager;
             _mapper = mapper;
@@ -48,9 +48,9 @@ namespace AuthServer.Services
                 throw new NotExistingUserException(userLoginDTO.Email);
             }
 
-            var result = await _userManager.CheckPasswordAsync(user, userLoginDTO.Password);
+            var passwordMatches = await _userManager.CheckPasswordAsync(user, userLoginDTO.Password);
 
-            if (!result)
+            if (!passwordMatches)
             {
                 throw new WrongPasswordException();
             }

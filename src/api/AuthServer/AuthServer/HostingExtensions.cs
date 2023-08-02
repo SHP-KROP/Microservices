@@ -42,7 +42,8 @@ internal static class HostingExtensions
             options.UseSqlServer(connectionString, sqlOptions => sqlOptions.MigrationsAssembly(migrationAssembly));
         });
 
-        builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+        builder.Services
+            .AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
         builder.Services
@@ -85,12 +86,13 @@ internal static class HostingExtensions
                 options.ClientSecret = "copy client secret from Google here";
             });
 
-        builder.Services.AddAutoMapper(typeof(MappingProfile));
+        builder.Services.AddAutoMapper(typeof(AuthMappingProfile));
 
         builder.Services.AddControllers();
 
         builder.Services.AddScoped<AuthService>();
         builder.Services.AddScoped<IJwtService, JwtService>();
+        builder.Services.AddScoped<IUserManagerDecorator, UserManagerDecorator>();
         builder.Services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
 
         builder.Services.AddFluentValidation();

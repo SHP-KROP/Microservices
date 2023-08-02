@@ -45,7 +45,7 @@ namespace AuctionService.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTimeOffset?>("StartTime")
+                    b.Property<DateTimeOffset>("StartTime")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("UserId")
@@ -55,6 +55,9 @@ namespace AuctionService.Infrastructure.Migrations
 
                     b.HasIndex("Name")
                         .IsUnique();
+
+                    b.HasIndex("StartTime")
+                        .IsDescending();
 
                     b.ToTable("Auctions", "auction");
                 });
@@ -95,7 +98,7 @@ namespace AuctionService.Infrastructure.Migrations
 
                     b.HasIndex("AuctionId");
 
-                    b.ToTable("AuctionItem", "auction");
+                    b.ToTable("AuctionItems", "auction");
                 });
 
             modelBuilder.Entity("AuctionService.Core.Entities.AuctionItemPhoto", b =>
@@ -121,7 +124,7 @@ namespace AuctionService.Infrastructure.Migrations
 
                     b.HasIndex("AuctionItemId");
 
-                    b.ToTable("AuctionItemPhoto", "auction");
+                    b.ToTable("AuctionItemPhotos", "auction");
                 });
 
             modelBuilder.Entity("AuctionService.Core.Entities.Bid", b =>
@@ -151,7 +154,7 @@ namespace AuctionService.Infrastructure.Migrations
 
                     b.HasIndex("AuctionItemId");
 
-                    b.ToTable("Bid", "auction");
+                    b.ToTable("Bids", "auction");
                 });
 
             modelBuilder.Entity("AuctionService.Core.Entities.AuctionItem", b =>

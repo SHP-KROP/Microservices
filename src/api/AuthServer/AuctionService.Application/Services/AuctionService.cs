@@ -1,8 +1,8 @@
 using AuctionService.Application.Models.Auction;
 using AuctionService.Application.Models.AuctionItem;
 using AuctionService.Application.Services.Abstractions;
+using AuctionService.Application.Services.Abstractions.Repositories;
 using AuctionService.Core.Entities;
-using AuctionService.Core.Repositories;
 using FluentResults;
 using Microsoft.Extensions.Logging;
 
@@ -20,7 +20,23 @@ public sealed class AuctionService : IAuctionService
         _logger = logger;
         _blobService = blobService;
     }
-    
+
+    public async Task<Result<CursorPaginatedAuctionsViewModel>> GetFilteredPagedAuctions(
+        int pageSize, string cursor, AuctionFilteringModel filter)
+    {
+        try
+        {
+            var filteringModel = AuctionCursorPagingFilteringModel.Create(pageSize, cursor, filter);
+            
+            var result = await _auctionRepository.GetFilteredPagedAuctions(filteringModel);
+
+            return Result.Ok((CursorPaginatedAuctionsViewModel)result);
+        }
+        catch (ArgumentOutOfRangeException ex)
+        {
+            return Result.Fail(ex.Message);
+        }
+    }
     public async Task<Result<AuctionViewModel>> Create(AuctionCreateModel createModel, string userId)
     {
         _logger.LogInformation("Started creating auction with Id {@AuctionId} for user {@UserId}", 
@@ -28,6 +44,11 @@ public sealed class AuctionService : IAuctionService
 
         Auction auction = createModel;
         auction.UserId = Guid.Parse(userId);
+
+        if (await _auctionRepository.ExistsWithName(createModel.Name))
+        {
+            return Result.Fail($"Auction name {createModel.Name} should be unique");
+        }
         
         var result = await _auctionRepository.CreateAuction(auction);
 
