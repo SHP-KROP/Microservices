@@ -5,6 +5,7 @@ import { ApiErrorHandler } from '../../api/rest/apiErrorHandler';
 import { IAddAuctionItemFormValues } from '../../interfaces/Forms/AddAuctionItem/IAddAuctionItemFormValues';
 import { useMutation } from 'react-query';
 import apiClient, { IAddAuctionsRequestValues } from '../../api/rest/api';
+import { toast } from 'react-toastify';
 
 function AddAuctionItemPage() {
   let { auctionId } = useParams();
@@ -13,10 +14,18 @@ function AddAuctionItemPage() {
 
   async function addAuctionItem(values: IAddAuctionItemFormValues) {
     try {
-      const addAuctionRequestValues: IAddAuctionsRequestValues = values;
+      const addAuctionRequestValues: IAddAuctionsRequestValues = {
+        ...values,
+        auctionId: auctionId as string,
+      };
 
-      await addAuctionItemMutation.mutateAsync(addAuctionRequestValues);
-      //toast.success(`Auction ${name} was successfully created`);
+      var { name } = await addAuctionItemMutation.mutateAsync(
+        addAuctionRequestValues
+      );
+
+      toast.success(
+        `Auction item ${name} was successfully added to the auction`
+      );
     } catch (error) {
       ApiErrorHandler.Handle(error);
     }

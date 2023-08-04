@@ -55,7 +55,7 @@ const apiClient: APIClient = {
     var formData = toFormData(values);
 
     const response = await axiosClient.post<IAddAuctionItemResponse>(
-      `${gatewayURL}/api/auctions/${auctionId}/items`,
+      `${gatewayURL}/api/auctions/${values.auctionId}/items`,
       formData,
       {
         headers: {
