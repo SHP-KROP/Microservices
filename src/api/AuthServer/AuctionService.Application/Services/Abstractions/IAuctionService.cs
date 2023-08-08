@@ -1,3 +1,4 @@
+using AuctionService.Application.Events;
 using AuctionService.Application.Models.Auction;
 using AuctionService.Application.Models.AuctionItem;
 using FluentResults;
@@ -12,4 +13,6 @@ public interface IAuctionService
 
     Task<Result<CursorPaginatedAuctionsViewModel>> GetFilteredPagedAuctions(
         int pageSize, string cursor, AuctionFilteringModel filter);
+
+    Task<Result<AuctionItemCreateModel>> CreateBid(BidUpdatedEvent bidUpdatedEvent, string userId);
 }

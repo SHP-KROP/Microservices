@@ -97,13 +97,13 @@ public sealed class AuctionService : IAuctionService
         return Result.Ok((AuctionItemViewModel)auctionItem);
     }
 
-    public async Task<Result<AuctionItemCreateModel>> CreateBid(BidUpdatedEvent updatedEvent, string auctionItemId, string userId)
+    public async Task<Result<AuctionItemCreateModel>> CreateBid(BidUpdatedEvent updatedEvent, string userId)
     {
-        var auctionItem = await _auctionRepository.GetAuctionItemById(Guid.Parse(auctionItemId));
+        var auctionItem = await _auctionRepository.GetAuctionItemById(Guid.Parse(updatedEvent.AuctionItemId));
 
         if (auctionItem is null)
         {
-            return Result.Fail($"There is no auction item with id {auctionItemId}");
+            return Result.Fail($"There is no auction item with id {updatedEvent.AuctionItemId}");
         }
 
         var date = DateTimeOffset.Now;

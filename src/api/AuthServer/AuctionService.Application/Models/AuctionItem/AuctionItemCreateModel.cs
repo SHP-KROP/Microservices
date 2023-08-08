@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using System.Reflection;
 
 namespace AuctionService.Application.Models.AuctionItem;
 
@@ -22,4 +23,15 @@ public class AuctionItemCreateModel
             Name = model.Name,
             Description = model.Description
         };
+
+    public static explicit operator AuctionItemCreateModel(Core.Entities.AuctionItem auctionItem)
+    {
+        return new AuctionItemCreateModel
+        {
+            StartingPrice = auctionItem.StartingPrice,
+            MinimalBid = auctionItem.MinimalBid,
+            Name = auctionItem.Name,
+            Description = auctionItem.Description
+        };
+    }
 }
