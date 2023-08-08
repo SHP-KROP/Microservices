@@ -1,4 +1,5 @@
 using AuctionService.Application.Models.Auction.Validators;
+using AuctionService.Application.Services.Abstractions;
 using AuctionService.Extensions;
 using AuctionService.Hubs;
 using AuctionService.Infrastructure.Persistence;
@@ -25,6 +26,7 @@ services.AddCors(x =>
 services.AddIdentityServerAuthentication(builder.Configuration);
 
 services.AddDiscovery(builder.Configuration);
+services.AddSingleton<IAuctionService, AuctionService.Application.Services.AuctionService>();
 services.AddSignalR();
 services.AddControllers();
 

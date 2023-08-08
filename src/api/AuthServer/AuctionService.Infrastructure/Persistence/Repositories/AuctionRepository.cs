@@ -100,4 +100,7 @@ public sealed class AuctionRepository : IAuctionRepository
     {
         return await _context.SaveChangesAsync() > 0;
     }
+
+    public async Task<AuctionItem> GetAuctionItemById(Guid aucionItemId) => 
+        await _context.AuctionItems.SingleOrDefaultAsync(x => x.Id == aucionItemId);
 }

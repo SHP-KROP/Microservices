@@ -32,15 +32,15 @@ internal sealed class AuctionHub : Hub, IHostedService
 
     #region AuctionHub
 
-    public Task UpdateBid(BidUpdatedEvent bidUpdatedEvent, string auctionId)
+    public async Task UpdateBid(BidUpdatedEvent bidUpdatedEvent, string auctionId)
     {
         string userId = Context.UserIdentifier;
 
-        _auctionService.CreateBid(bidUpdatedEvent, userId);
+        await _auctionService.CreateBid(bidUpdatedEvent, userId);
 
         Clients.Group(auctionId).SendAsync("BidUpdated", bidUpdatedEvent);
 
-        return Task.CompletedTask;
+        //return Task.CompletedTask;
     }
 
     public override Task OnConnectedAsync()
