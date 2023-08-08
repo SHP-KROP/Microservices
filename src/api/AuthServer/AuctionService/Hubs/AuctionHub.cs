@@ -1,3 +1,4 @@
+using AuctionService.Application.Events;
 using AuctionService.Application.Services.Abstractions;
 using AuctionService.Infrastructure.Messaging.Constants;
 using AuctionService.Infrastructure.Messaging.Contracts;
@@ -15,7 +16,10 @@ internal sealed class AuctionHub : Hub, IHostedService
     private readonly IAuctionHost _auctionHost;
     private readonly KafkaOptions _kafkaOptions;
 
-    public AuctionHub(ILogger<AuctionHub> logger, IAuctionHost auctionHost, IOptions<KafkaOptions> kafkaOptions)
+    public AuctionHub(
+        ILogger<AuctionHub> logger, 
+        IAuctionHost auctionHost, 
+        IOptions<KafkaOptions> kafkaOptions)
     {
         _logger = logger;
         _auctionHost = auctionHost;
@@ -24,11 +28,15 @@ internal sealed class AuctionHub : Hub, IHostedService
 
     #region AuctionHub
 
-    public Task UpdateBid(Guid productId, decimal newPrice)
+    public async Task UpdateBid(BidUpdatedEvent bidUpdatedEvent)
     {
-        Clients.All.SendAsync("BidUpdated", productId, newPrice);
+        //Clients.All.SendAsync("BidUpdated", productId, newPrice);
+        //var result = await _auctionService.CreateBid(bidUpdatedEvent, _auctionHost.);
 
-        return Task.CompletedTask;
+        //if (result)
+            await Clients.All.SendAsync("BidUpdated", bidUpdatedEvent);
+
+        //return Task.CompletedTask;
     }
 
     public override Task OnConnectedAsync()

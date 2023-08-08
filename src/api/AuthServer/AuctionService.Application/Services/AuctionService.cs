@@ -3,6 +3,7 @@ using AuctionService.Application.Models.AuctionItem;
 using AuctionService.Application.Services.Abstractions;
 using AuctionService.Application.Services.Abstractions.Repositories;
 using AuctionService.Core.Entities;
+using AuctionService.Application.Events;
 using FluentResults;
 using Microsoft.Extensions.Logging;
 
@@ -37,6 +38,7 @@ public sealed class AuctionService : IAuctionService
             return Result.Fail(ex.Message);
         }
     }
+
     public async Task<Result<AuctionViewModel>> Create(AuctionCreateModel createModel, string userId)
     {
         _logger.LogInformation("Started creating auction with Id {@AuctionId} for user {@UserId}", 
@@ -93,5 +95,30 @@ public sealed class AuctionService : IAuctionService
         }
 
         return Result.Ok((AuctionItemViewModel)auctionItem);
+    }
+
+    public async Task<Result<AuctionItemCreateModel>> CreateBid(BidUpdatedEvent updatedEvent, string auctionItemId, string userId)
+    {
+        var auctionItem = await _auctionRepository.GetAuctionItemById(Guid.Parse(auctionItemId));
+
+        if (auctionItem is null)
+        {
+            return Result.Fail($"There is no auction item with id {auctionItemId}");
+        }
+
+        var date = DateTimeOffset.Now;
+
+        var result = auctionItem.AddBid(Guid.Parse(userId), updatedEvent.UpdatedPrice, date);
+
+        if (!result.Equals(null))
+        {
+            _logger.LogInformation("Bid in auction item with Id {@AuctionItemId} created", auctionItem.Id);
+
+            return Result.Ok((AuctionItemCreateModel)auctionItem);
+        }
+
+        _logger.LogWarning("Failed to create a bid in auction item with Id {@AuctionId}", auctionItem.Id);
+
+        return Result.Fail($"Unable to create a bid in auction item with Id {auctionItem.Id}");
     }
 }
