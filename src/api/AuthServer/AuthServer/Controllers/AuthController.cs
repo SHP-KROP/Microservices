@@ -18,7 +18,6 @@ namespace AuthServer.Controllers
         [HttpPost("register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Register([FromBody]UserRegisterDTO userRegisterDTO)
         {
             try
@@ -26,16 +25,16 @@ namespace AuthServer.Controllers
                 var userDto = await _authService.Register(userRegisterDTO);
                 return Ok(userDto);
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
-                return Unauthorized(ex.Message);
+                return BadRequest(ex.Message);
             }
+            
         }
 
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Login([FromBody] UserLoginDTO userLoginDTO)
         {
             try
@@ -43,9 +42,9 @@ namespace AuthServer.Controllers
                 var token = await _authService.Login(userLoginDTO);
                 return Ok(new { Token = token });
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
-                return Unauthorized(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
     }
