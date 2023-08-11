@@ -1,6 +1,5 @@
 using AuctionService.Application.Events;
 using AuctionService.Application.Services.Abstractions;
-using AuctionService.Core.Entities;
 using AuctionService.Infrastructure.Messaging.Constants;
 using AuctionService.Infrastructure.Messaging.Contracts;
 using AuctionService.Infrastructure.Messaging.Extensions;
@@ -15,19 +14,19 @@ internal sealed class AuctionHub : Hub, IHostedService
 {
     private readonly ILogger<AuctionHub> _logger;
     private readonly IAuctionHost _auctionHost;
-    private readonly IAuctionService _auctionService;
+    private readonly IAuctionHubService _auctionHubService;
     private readonly KafkaOptions _kafkaOptions;
 
     public AuctionHub(
         ILogger<AuctionHub> logger,
         IAuctionHost auctionHost,
         IOptions<KafkaOptions> kafkaOptions,
-        IAuctionService auctionService)
+        IAuctionHubService auctionHubService)
     {
         _logger = logger;
         _auctionHost = auctionHost;
         _kafkaOptions = kafkaOptions.Value;
-        _auctionService = auctionService;
+        _auctionHubService = auctionHubService;
     }
 
     #region AuctionHub
@@ -36,7 +35,7 @@ internal sealed class AuctionHub : Hub, IHostedService
     {
         string userId = Context.UserIdentifier;
 
-        await _auctionService.CreateBid(bidUpdatedEvent, userId);
+        await _auctionHubService.CreateBid(bidUpdatedEvent, userId);
 
         Clients.Group(auctionId).SendAsync("BidUpdated", bidUpdatedEvent);
 
