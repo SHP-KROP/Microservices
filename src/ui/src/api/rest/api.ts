@@ -6,6 +6,8 @@ import { IRegisterResponse } from '../../interfaces/Auth/IRegisterResponse';
 import { ICreateAuctionFormValues } from '../../interfaces/Forms/CreateAuction/ICreateAuctionFormValues';
 import { ICreateAuctionResponse } from '../../interfaces/Responses/Auction/ICreateAuctionResponse';
 import Cookies from 'js-cookie';
+import { IAddAuctionItemFormValues } from '../../interfaces/Forms/AddAuctionItem/IAddAuctionItemFormValues';
+import { IAddAuctionItemResponse } from '../../interfaces/Responses/AuctionItem/IAddAuctionItemResponse';
 
 export interface APIClient {
   login: (values: ILoginFormValues) => Promise<ILoginResponse>;
@@ -13,6 +15,9 @@ export interface APIClient {
   createAuction: (
     values: ICreateAuctionFormValues
   ) => Promise<ICreateAuctionResponse>;
+  addAuctionItem: (
+    values: IAddAuctionsRequestValues
+  ) => Promise<IAddAuctionItemResponse>;
 }
 
 const gatewayURL = `${import.meta.env.VITE_GATEWAY_URL!}`;
@@ -46,6 +51,35 @@ const apiClient: APIClient = {
     );
     return response.data;
   },
+  async addAuctionItem(values: IAddAuctionsRequestValues) {
+    var formData = toFormData(values);
+
+    const response = await axiosClient.post<IAddAuctionItemResponse>(
+      `${gatewayURL}/api/auctions/${values.auctionId}/items`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+
+    return response.data;
+  },
 };
+
+export interface IAddAuctionsRequestValues extends IAddAuctionItemFormValues {
+  auctionId: string;
+}
+
+function toFormData(formValues) {
+  const formData = new FormData();
+
+  for (let key in formValues) {
+    formData.append(key, formValues[key]);
+  }
+
+  return formData;
+}
 
 export default apiClient;

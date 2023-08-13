@@ -17,6 +17,7 @@ public class AuctionItemCreateModel
     public static implicit operator Core.Entities.AuctionItem(AuctionItemCreateModel model) =>
         new()
         {
+            ActualPrice = model.StartingPrice,
             StartingPrice = model.StartingPrice,
             MinimalBid = model.MinimalBid,
             Name = model.Name,
